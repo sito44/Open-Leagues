@@ -1,0 +1,19 @@
+.d-block {
+    border: 10px solid #111;
+}
+
+.item {
+    display: none;
+    position: relative;
+    transition: (.3s ease-in-out left);
+}
+
+.overlay {
+    color: #fff;
+    position: absolute;
+    z-index: 12;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
