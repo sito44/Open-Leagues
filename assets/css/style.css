@@ -5,7 +5,7 @@
 .item {
     display: none;
     position: relative;
-    .transition: (.3s ease-in-out left);
+    transition: (.3s ease-in-out left);
 }
 
 .overlay {
