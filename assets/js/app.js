@@ -15,10 +15,11 @@ $(function(){
 	createBtn.addClass('btnStyle');
 	searchBtn.text('Search');
 	createBtn.text('Create Event');
+	main.append(searchBtn);
+	main.append(createBtn);
 	elementArray.push(headLogo);
 	elementArray.push(main);
-	elementArray.push(searchBtn);
-	elementArray.push(createBtn);
+	
 
 	appender(elementArray);
 
