@@ -11,8 +11,8 @@ $(function(){
 	createBtn.attr('id', 'createBtn');
 	headLogo.addClass('logo');
 	main.addClass('mainStyle');
-	searchBtn.addClass('btnStyle');
-	createBtn.addClass('btnStyle');
+	searchBtn.addClass('btnStyle btn btn-lg active');
+	createBtn.addClass('btnStyle btn btn-lg active');
 	searchBtn.text('Search');
 	createBtn.text('Create Event');
 	main.append(searchBtn);
