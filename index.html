@@ -53,9 +53,7 @@
                 fjs.parentNode.insertBefore(js, fjs);
 
 
-        }
-
-        (document, 'script', 'facebook-jssdk'));
+        }(document, 'script', 'facebook-jssdk'));
 
         function login() {
             FB.login(function(response) {
