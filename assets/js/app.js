@@ -44,18 +44,21 @@ $(function() {
 
 
         var headLogo = $('<header>');
+        var img = $('<img>');
         var main = $('<main>');
         var searchBtn = $('<button>');
         var createBtn = $('<button>');
         main.attr('id', 'main');
         searchBtn.attr('id', 'searchBtn');
         createBtn.attr('id', 'createBtn');
+        img.attr('src', './assets/css/sunroof.png')
         headLogo.addClass('logo');
         main.addClass('mainStyle overlay');
         searchBtn.addClass('btnStyle btn btn-lg active');
         createBtn.addClass('btnStyle btn btn-lg active');
         searchBtn.text('Search');
         createBtn.text('Create Event');
+        headLogo.html(img);
         main.append(searchBtn);
         main.append(createBtn);
         elementArray.push(carousel);
