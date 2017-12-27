@@ -22,6 +22,7 @@
     
     <script>
         'use strict';
+        $(function(){
         window.fbAsyncInit = function() {
         FB.init({
         appId      : '316009212235911',
@@ -33,7 +34,7 @@
             if (response.status === 'connected') {
                 document.getElementById('app').innerHTML = 'we are connected';
             } else if (response.status === 'not_authorized') {
-                document.getElementById('app').innerHTML = 'we are connected';
+                document.getElementById('app').innerHTML = 'we are not connected';
 
             } else {
                 document.getElementById('app').innerHTML = 'you are not logged into facebook';
@@ -69,7 +70,7 @@
             });
         }
 
-
+});
 
 
     </script>
@@ -78,6 +79,7 @@
     <br>
     <br>
     <button onclick="login()">Login</button>
+
     
     <!-- link to bootstrap javascript cdn -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
