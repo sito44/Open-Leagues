@@ -20,6 +20,7 @@ $(function() {
     landingPage();
     appender(elementArray);
 
+// function that generates the landing page
     function landingPage() {
 
         emptyAppContainer();
@@ -64,6 +65,7 @@ $(function() {
 
     }
 
+//function that generates the create event page
     function createPage() {
 
         emptyAppContainer();
@@ -77,7 +79,7 @@ $(function() {
         appContainer.append(main);
         initMap();
     }
-
+// function that is used to append the elements of the landing page
     function appender(elements) {
 
         for (var i = 0; i < elements.length; i++) {
@@ -85,11 +87,11 @@ $(function() {
         }
 
     }
-
+//function that empties the app div
     function emptyAppContainer() {
         appContainer.empty();
     }
-
+// initialize google maps function
     function initMap() {
 
         var marker;
@@ -106,7 +108,7 @@ $(function() {
         });
 
     }
-
+// adds click handler onto the create event button - event delegation
     $('body').on('click', '#createBtn', createPage);
     /*$('body').on('click', '#searchBtn', searchPage);*/
 
