@@ -34,9 +34,12 @@
                 document.getElementById('app').innerHTML = 'we are connected';
             } else if (response.status === 'not_authorized') {
                 document.getElementById('app').innerHTML = 'we are connected';
+
+            } else {
+                document.getElementById('app').innerHTML = 'you are not logged into facebook'
             }
             
-            });
+        });
       
         FB.AppEvents.logPageView();   
       
@@ -54,12 +57,27 @@
 
         (document, 'script', 'facebook-jssdk'));
 
+        function login() {
+            FB.login(function(response) {
+                if (response.status === 'connected') {
+                document.getElementById('app').innerHTML = 'we are connected';
+                } else if (response.status === 'not_authorized') {
+                document.getElementById('app').innerHTML = 'we are connected';
+
+                } else {
+                document.getElementById('app').innerHTML = 'you are not logged into facebook'
+            }
+
+            });
+        }
+
 
 
 
     </script>
     
     <div id='app'></div>
+    <button onclick="login()">Login</button>
     
     <!-- link to bootstrap javascript cdn -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
