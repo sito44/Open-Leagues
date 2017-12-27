@@ -24,16 +24,34 @@
     margin: 10px;
 }
 
+.logo {
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 12;
+    top: 10%;
+    left: 0%;
+    width: 100%;
+    height:100%;
+    text-align: center;
+
+}
+
 .createPageStyle {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
 }
+
 .createPageMap {
-    width: 100%;
+    width: 90%;
     height:50%;
+    border: 4px solid black;
+    border-radius: 25px;
+    padding: 5px;
+    margin-left: 5%;
 }
+
 #app {
     height: 100%;
     width: 100%;
