@@ -42,9 +42,14 @@
     margin: 0;
     padding: 0;
 }
+
 .createPageMap {
-    width: 100%;
+    width: 90%;
     height:50%;
+    border: 4px solid black;
+    border-radius: 25px;
+    padding: 5px;
+    margin-left: 5%;
 }
 
 #app {
