@@ -21,7 +21,7 @@
 <body>
     
     <script>
-
+        'use strict';
         window.fbAsyncInit = function() {
         FB.init({
         appId      : '316009212235911',
@@ -30,7 +30,12 @@
         version    : 'v2.11'
         });
             FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
+            if (response.status === 'connected') {
+                document.getElementById('app').innerHTML = 'we are connected';
+            } else if (response.status === 'not_authorized') {
+                document.getElementById('app').innerHTML = 'we are connected';
+            }
+            
             });
       
         FB.AppEvents.logPageView();   
@@ -53,7 +58,7 @@
 
 
     </script>
-
+    
     <div id='app'></div>
     
     <!-- link to bootstrap javascript cdn -->
