@@ -41,7 +41,7 @@ $(function() {
     function statusChangeCallback(response) {
         if (response.status === 'connected') {
             console.log('logged in and authenticated');
-        } else {
+        } else if (response.status === 'not_authenticated'){
             console.log('not authenticated');
         }
     }
