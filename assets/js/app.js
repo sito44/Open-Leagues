@@ -12,33 +12,34 @@ $(function() {
     firebase.initializeApp(config);
     var OLdatabase = firebase.database();
 
-//Facebook Login
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '316009212235911',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v2.11'
-    });
-      
-    
-    FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-    });
-      
-  };
+    //Facebook Login
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: '316009212235911',
+            cookie: true,
+            xfbml: true,
+            version: 'v2.11'
+        });
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
+
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
+
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 
 
     function statusChangeCallback(response) {
-        if(response.stats === 'connected') {
+        if (response.stats === 'connected') {
             console.log('logged in and authenticated');
         } else {
             console.log('not authenticated');
@@ -119,8 +120,8 @@ $(function() {
             '<option value="volleyball">volleyball</option>' +
             '<option value="hockey">hockey</option>' +
             '<option value="baseball">baseball</option>' +
-            '<option value="basketball">basketball</option>'+
-            '<option value="yoga">yoga</option>'+
+            '<option value="basketball">basketball</option>' +
+            '<option value="yoga">yoga</option>' +
             '<option value="hiking">hiking</option>';
 
         var labelSportChoice = $('<label for="sportsChoice">');
@@ -137,13 +138,10 @@ $(function() {
         labelSportChoice.text('')
         labelStartTime.text('Start Time: ');
         labelDurationTime.text('Duration: ');
-        labelTeamSize.text('Team size: ');
-<<<<<<< HEAD
+        labelTeamSize.text('Team Size: ');
         labelBenchSeats.text('Bench Seats: ');
-=======
-        labelBenchSeats.text('bench seats: ');
         eventSubmit.text('Create Event');
->>>>>>> master
+
         childElements.push(
 
             address,
@@ -219,7 +217,7 @@ $(function() {
 
     // firebase calls 
 
-    $('body').on('click', '#eventSubmit', function(event){
+    $('body').on('click', '#eventSubmit', function(event) {
         event.preventDefault();
 
         var sportInput = $("#selectedSport").val().trim();
