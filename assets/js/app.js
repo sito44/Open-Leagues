@@ -100,7 +100,7 @@ $(function() {
 
         var fbBtn = $('<fb:login-button>');
         fbBtn.attr('scope', 'public_profile, email');
-        app.append(fbBtn);
+        appContainer.append(fbBtn);
 
 
         var childElements = [];
