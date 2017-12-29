@@ -95,6 +95,7 @@ $(function() {
     //function that generates the create event page
     function createPage() {
 
+        emptyAppContainer();
         //add FB button to page
 
         var fbBtn = $('<fb:login-button>');
@@ -102,7 +103,6 @@ $(function() {
         app.append(fbBtn);
 
 
-        emptyAppContainer();
         var childElements = [];
         var main = $('<main class="createPageStyle">');
         var mapContainer = $('<div id="map" class="createPageMap">');
