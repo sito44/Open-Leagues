@@ -134,7 +134,7 @@ $(function() {
         var benchSeats = $('<input type="text" name="benchSeats" id="benchSeats">');
         var eventSubmit = $('<button id="eventSubmit" class="eSubmit">');
         sportsSelector.html(sportsOptions);
-        labelSportChoice.text('')
+        fbBtn.text('Login');
         labelStartTime.text('Start Time: ');
         labelDurationTime.text('Duration: ');
         labelTeamSize.text('Team Size: ');
