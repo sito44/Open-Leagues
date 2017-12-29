@@ -223,7 +223,7 @@ $(function() {
             teamSize: teamSizeInput,
             benchSeats: benchSeatsInput
         };
-        OLdatabase.
+        /*OLdatabase.*/
     });
 
 });
