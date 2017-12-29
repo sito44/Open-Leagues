@@ -85,11 +85,13 @@ $(function() {
         var teamSize = $('<input type="text" name="teamSize">');
         var labelBenchSeats = $('<label for="benchSeats">');
         var benchSeats = $('<input type="text" name="benchSeats">');
+        var eventSubmit = $('<button id="eventSubmit" class="eSubmit">');
         sportsSelector.html(sportsOptions);
         labelStartTime.text('start time: ');
         labelDurationTime.text('Duration: ');
         labelTeamSize.text('Team size: ');
         labelBenchSeats.text('bench seats: ');
+        eventSubmit.text('Create Event');
         childElements.push(
 
             address,
@@ -101,7 +103,8 @@ $(function() {
             labelTeamSize,
             teamSize,
             labelBenchSeats,
-            benchSeats);
+            benchSeats,
+            eventSubmit);
 
         appender(childElements, form);
 
@@ -160,5 +163,26 @@ $(function() {
     // adds click handler onto the create event button - event delegation
     $('body').on('click', '#createBtn', createPage);
     /*$('body').on('click', '#searchBtn', searchPage);*/
+
+    // firebase calls 
+
+    $('body').on('click', '#eventSubmit', function(event){
+        event.preventDefault();
+
+        var sportInput = $("#trainName").val().trim();
+        var startTimeInput = $("#destination").val().trim();
+        var durationInput = $("#firstTrainTime").val().trim();
+        var teamSizeInput = $("#frequency").val().trim();
+        var benchSeatsInput = $("#frequency").val().trim();
+
+        var currentUser = {
+            selectedSport: sportInput,
+            startTime: startTimeInput,
+            duration: durationInput,
+            teamSize: teamSizeInput,
+            benchSeats: benchSeatsInput
+        };
+        OLdatabase.
+    });
 
 });
