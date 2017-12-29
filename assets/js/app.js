@@ -64,26 +64,26 @@ $(function() {
             '<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">' +
             '<div class="carousel-inner">' +
             '<div class="carousel-item active">' +
-            '<img class="d-block w-100" src="assets/css/grass.jpg" alt="First slide">' +
+            '<img class="d-block w-100" src="assets/css/basketball2.jpeg" alt="First slide">' +
             '</div>' +
             '<div class="carousel-item">' +
-            '<img class="d-block w-100" src="assets/css/basketball.jpg" alt="Second slide">' +
+            '<img class="d-block w-100" src="assets/css/soccer2.jpeg" alt="Second slide">' +
             '</div>' +
             '<div class="carousel-item">' +
-            '<img class="d-block w-100" src="assets/css/hockey.jpg" alt="Third slide">' +
+            '<img class="d-block w-100" src="assets/css/volleyball.jpeg" alt="Third slide">' +
             '</div>' +
             '</div>' +
             '</div>';
 
 
         var headLogo = $('<header class="logo">');
-        var img = $('<img src="./assets/css/sunroof.png">');
+        var img = $('<img src="./assets/css/sunroof.png" class="openLogo">');
         var main = $('<main id="main" class="mainStyle overlay">');
         var searchBtn = $('<button id="searchBtn" class="btnStyle btn btn-lg active">');
         var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active">');
         searchBtn.text('Search');
         createBtn.text('Create Event');
-        headLogo.append(img);
+        headLogo.html(img);
         main.append(searchBtn);
         main.append(createBtn);
         elementArray.push(carousel);
@@ -97,7 +97,10 @@ $(function() {
 
         emptyAppContainer();
         var childElements = [];
+
         var main = $('<main class="createPageStyle">');
+        var headLogo = $('<header class="createEventLogo">');
+        var img = $('<img src="./assets/css/sunroof.png">');
         var mapContainer = $('<div id="map" class="createPageMap">');
         var form = $('<form class="eventForm">');
         var address = $('<h4>');
@@ -109,8 +112,11 @@ $(function() {
             '<option value="volleyball">volleyball</option>' +
             '<option value="hockey">hockey</option>' +
             '<option value="baseball">baseball</option>' +
-            '<option value="basketball">basketball</option>';
+            '<option value="basketball">basketball</option>'+
+            '<option value="yoga">yoga</option>'+
+            '<option value="hiking">hiking</option>';
 
+        var labelSportChoice = $('<label for="sportsChoice">');
         var labelStartTime = $('<label for="startTime">');
         var gameStartTime = $('<input type="text" name="startTime">');
         var labelDurationTime = $('<label for="DurationTime">');
@@ -120,10 +126,11 @@ $(function() {
         var labelBenchSeats = $('<label for="benchSeats">');
         var benchSeats = $('<input type="text" name="benchSeats">');
         sportsSelector.html(sportsOptions);
-        labelStartTime.text('start time: ');
+        labelSportChoice.text('')
+        labelStartTime.text('Start Time: ');
         labelDurationTime.text('Duration: ');
         labelTeamSize.text('Team size: ');
-        labelBenchSeats.text('bench seats: ');
+        labelBenchSeats.text('Bench Seats: ');
         childElements.push(
 
             address,
@@ -139,6 +146,7 @@ $(function() {
 
         appender(childElements, form);
 
+        headLogo.append(img);
         main.append(mapContainer);
         main.append(form);
         appContainer.append(main);
