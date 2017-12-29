@@ -39,9 +39,9 @@ $(function() {
 
     function statusChangeCallback(response) {
         if(response.stats === 'connected') {
-            console.log('logged in and authenticated')
+            console.log('logged in and authenticated');
         } else {
-            console.log('not authenticated')
+            console.log('not authenticated');
         }
     }
 
@@ -96,6 +96,13 @@ $(function() {
     function createPage() {
 
         emptyAppContainer();
+        //add FB button to page
+
+        var fbBtn = $('<fb:login-button>');
+        fbBtn.attr('scope', 'public_profile, email');
+        appContainer.append(fbBtn);
+
+
         var childElements = [];
 
         var main = $('<main class="createPageStyle">');
@@ -104,7 +111,7 @@ $(function() {
         var mapContainer = $('<div id="map" class="createPageMap">');
         var form = $('<form class="eventForm">');
         var address = $('<h4>');
-        var sportsSelector = $('<select name="sports">');
+        var sportsSelector = $('<select name="sports" id="selectedSport">');
         var sportsOptions =
 
             '<option value="soccer">soccer</option>' +
@@ -118,19 +125,25 @@ $(function() {
 
         var labelSportChoice = $('<label for="sportsChoice">');
         var labelStartTime = $('<label for="startTime">');
-        var gameStartTime = $('<input type="text" name="startTime">');
-        var labelDurationTime = $('<label for="DurationTime">');
+        var gameStartTime = $('<input type="text" name="startTime" id="startTime">');
+        var labelDurationTime = $('<label for="DurationTime" id="durationTime">');
         var gameDurationTime = $('<input type="text" name="DurationTime">');
         var labelTeamSize = $('<label for="teamSize">');
-        var teamSize = $('<input type="text" name="teamSize">');
+        var teamSize = $('<input type="text" name="teamSize" id="teamSize">');
         var labelBenchSeats = $('<label for="benchSeats">');
-        var benchSeats = $('<input type="text" name="benchSeats">');
+        var benchSeats = $('<input type="text" name="benchSeats" id="benchSeats">');
+        var eventSubmit = $('<button id="eventSubmit" class="eSubmit">');
         sportsSelector.html(sportsOptions);
         labelSportChoice.text('')
         labelStartTime.text('Start Time: ');
         labelDurationTime.text('Duration: ');
         labelTeamSize.text('Team size: ');
+<<<<<<< HEAD
         labelBenchSeats.text('Bench Seats: ');
+=======
+        labelBenchSeats.text('bench seats: ');
+        eventSubmit.text('Create Event');
+>>>>>>> master
         childElements.push(
 
             address,
@@ -142,7 +155,8 @@ $(function() {
             labelTeamSize,
             teamSize,
             labelBenchSeats,
-            benchSeats);
+            benchSeats,
+            eventSubmit);
 
         appender(childElements, form);
 
@@ -202,5 +216,26 @@ $(function() {
     // adds click handler onto the create event button - event delegation
     $('body').on('click', '#createBtn', createPage);
     /*$('body').on('click', '#searchBtn', searchPage);*/
+
+    // firebase calls 
+
+    $('body').on('click', '#eventSubmit', function(event){
+        event.preventDefault();
+
+        var sportInput = $("#selectedSport").val().trim();
+        var startTimeInput = $("#destination").val().trim();
+        var durationInput = $("#firstTrainTime").val().trim();
+        var teamSizeInput = $("#frequency").val().trim();
+        var benchSeatsInput = $("#frequency").val().trim();
+
+        var currentUser = {
+            selectedSport: sportInput,
+            startTime: startTimeInput,
+            duration: durationInput,
+            teamSize: teamSizeInput,
+            benchSeats: benchSeatsInput
+        };
+        /*OLdatabase.*/
+    });
 
 });
