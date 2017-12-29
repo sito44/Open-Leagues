@@ -67,7 +67,7 @@ $(function() {
         var mapContainer = $('<div id="map" class="createPageMap">');
         var form = $('<form class="eventForm">');
         var address = $('<h4>');
-        var sportsSelector = $('<select name="sports">');
+        var sportsSelector = $('<select name="sports" id="selectedSport">');
         var sportsOptions =
 
             '<option value="soccer">soccer</option>' +
@@ -78,13 +78,13 @@ $(function() {
             '<option value="basketball">basketball</option>';
 
         var labelStartTime = $('<label for="startTime">');
-        var gameStartTime = $('<input type="text" name="startTime">');
-        var labelDurationTime = $('<label for="DurationTime">');
+        var gameStartTime = $('<input type="text" name="startTime" id="startTime">');
+        var labelDurationTime = $('<label for="DurationTime" id="durationTime">');
         var gameDurationTime = $('<input type="text" name="DurationTime">');
         var labelTeamSize = $('<label for="teamSize">');
-        var teamSize = $('<input type="text" name="teamSize">');
+        var teamSize = $('<input type="text" name="teamSize" id="teamSize">');
         var labelBenchSeats = $('<label for="benchSeats">');
-        var benchSeats = $('<input type="text" name="benchSeats">');
+        var benchSeats = $('<input type="text" name="benchSeats" id="benchSeats">');
         var eventSubmit = $('<button id="eventSubmit" class="eSubmit">');
         sportsSelector.html(sportsOptions);
         labelStartTime.text('start time: ');
@@ -169,7 +169,7 @@ $(function() {
     $('body').on('click', '#eventSubmit', function(event){
         event.preventDefault();
 
-        var sportInput = $("#trainName").val().trim();
+        var sportInput = $("#selectedSport").val().trim();
         var startTimeInput = $("#destination").val().trim();
         var durationInput = $("#firstTrainTime").val().trim();
         var teamSizeInput = $("#frequency").val().trim();
