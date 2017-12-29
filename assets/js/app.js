@@ -11,7 +11,7 @@ $(function() {
     };
     firebase.initializeApp(config);
     var OLdatabase = firebase.database();
-    
+
 
 
     var elementArray = [];
