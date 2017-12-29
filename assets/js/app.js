@@ -99,14 +99,13 @@ $(function() {
         emptyAppContainer();
         //add FB button to page
 
-        var fbBtn = $('<fb:login-button>');
-        fbBtn.attr('scope', 'public_profile, email');
-        appContainer.append(fbBtn);
 
 
         var childElements = [];
 
         var main = $('<main class="createPageStyle">');
+        var fbBtn = $('<fb:login-button>');
+        fbBtn.attr('scope', 'public_profile, email');
         var headLogo = $('<header class="createEventLogo">');
         var img = $('<img src="./assets/css/sunroof.png">');
         var mapContainer = $('<div id="map" class="createPageMap">');
@@ -159,6 +158,7 @@ $(function() {
         appender(childElements, form);
 
         headLogo.append(img);
+        main.append(fbBtn);
         main.append(mapContainer);
         main.append(form);
         appContainer.append(main);
