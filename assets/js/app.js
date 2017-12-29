@@ -95,6 +95,13 @@ $(function() {
     //function that generates the create event page
     function createPage() {
 
+        //add FB button to page
+
+        var fbBtn = $('<fb:login-button>');
+        fbBtn.attr('scope', 'public_profile, email');
+        app.append(fbBtn);
+
+
         emptyAppContainer();
         var childElements = [];
         var main = $('<main class="createPageStyle">');
