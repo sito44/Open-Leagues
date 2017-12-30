@@ -106,8 +106,8 @@ $(function() {
 
         var main = $('<main class="createPageStyle">');
 
-        var fbBtn = '<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">' +
-            '</fb:login-button>';
+        /*var fbBtn = '<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">' +
+            '</fb:login-button>';*/
 
         var headLogo = $('<header class="createEventLogo">');
         var img = $('<img src="./assets/css/sunroof.png">');
@@ -160,7 +160,7 @@ $(function() {
 
         appender(childElements, form);
         headLogo.append(img);
-        main.append(fbBtn);
+        /*main.append(fbBtn);*/
         main.append(mapContainer);
         main.append(form);
         appContainer.append(main);
