@@ -74,7 +74,6 @@ $(function() {
         var fbBtn = '<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">' + 
     '</fb:login-button>';
 
-        fbBtn.attr('scope', 'public_profile, email');
         var headLogo = $('<header class="createEventLogo">');
         var img = $('<img src="./assets/css/sunroof.png">');
         var mapContainer = $('<div id="map" class="createPageMap">');
