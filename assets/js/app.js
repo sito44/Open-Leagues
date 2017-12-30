@@ -70,7 +70,10 @@ $(function() {
         var childElements = [];
 
         var main = $('<main class="createPageStyle">');
-        var fbBtn = $('<fb:login-button>');
+        
+        var fbBtn = '<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">' + 
+    '</fb:login-button>';
+
         fbBtn.attr('scope', 'public_profile, email');
         var headLogo = $('<header class="createEventLogo">');
         var img = $('<img src="./assets/css/sunroof.png">');
@@ -100,7 +103,7 @@ $(function() {
         var benchSeats = $('<input type="text" name="benchSeats" id="benchSeats">');
         var eventSubmit = $('<button id="eventSubmit" class="eSubmit">');
         sportsSelector.html(sportsOptions);
-        fbBtn.text('Login');
+        
         labelStartTime.text('Start Time: ');
         labelDurationTime.text('Duration: ');
         labelTeamSize.text('Team Size: ');
@@ -122,7 +125,6 @@ $(function() {
             eventSubmit);
 
         appender(childElements, form);
-
         headLogo.append(img);
         main.append(fbBtn);
         main.append(mapContainer);
@@ -181,16 +183,51 @@ $(function() {
     $('body').on('click', '#createBtn', createPage);
     /*$('body').on('click', '#searchBtn', searchPage);*/
 
+
+    window.fbAsyncInit = function() {
+            FB.init({
+            appId      : '316009212235911',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v2.11'
+        });
+            FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+            });
+       
+      
+        };
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        function statusChangeCallback(response) {
+            if(response.status === 'connected') {
+                console.log('logged in and authenticated');
+            } else {
+                console.log('not authenticated');
+            }
+        }
+        
+        function checkLoginState() {
+            FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+            });
+        } 
+
     // firebase calls 
 
     $('body').on('click', '#eventSubmit', function(event) {
         event.preventDefault();
 
         var sportInput = $("#selectedSport").val().trim();
-        var startTimeInput = $("#destination").val().trim();
-        var durationInput = $("#firstTrainTime").val().trim();
-        var teamSizeInput = $("#frequency").val().trim();
-        var benchSeatsInput = $("#frequency").val().trim();
+        var startTimeInput = $("#startTime").val().trim();
+        var durationInput = $("#durationTime").val().trim();
+        var teamSizeInput = $("#teamSize").val().trim();
+        var benchSeatsInput = $("#benchSeats").val().trim();
 
         var currentUser = {
             selectedSport: sportInput,
@@ -199,7 +236,12 @@ $(function() {
             teamSize: teamSizeInput,
             benchSeats: benchSeatsInput
         };
-        /*OLdatabase.*/
+        OLdatabase.ref().push(currentUser);
+         $('#selectedSport').val('');
+        $('#startTime').val('');
+        $('#durationTime').val('');
+        $('#teamSize').val('');
+        $('#benchSeats').val('');
     });
 
 });
