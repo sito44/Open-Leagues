@@ -66,20 +66,20 @@ $(function() {
             '<div id="carouselExampleSlidesOnly" class="carousel slide full-screen" data-ride="carousel">' +
             '<div class="carousel-inner">' +
             '<div class="carousel-item active">' +
-            '<img class="d-block w-100 full-screen" src="assets/css/basketball2.jpeg" alt="First slide">' +
+            '<img class="d-block w-100 full-screen" src="assets/images/basketball2.jpeg" alt="First slide">' +
             '</div>' +
             '<div class="carousel-item">' +
-            '<img class="d-block w-100 full-screen" src="assets/css/soccer2.jpeg" alt="Second slide">' +
+            '<img class="d-block w-100 full-screen" src="assets/images/soccer2.jpeg" alt="Second slide">' +
             '</div>' +
             '<div class="carousel-item">' +
-            '<img class="d-block w-100 full-screen" src="assets/css/volleyball.jpeg" alt="Third slide">' +
+            '<img class="d-block w-100 full-screen" src="assets/images/volleyball.jpeg" alt="Third slide">' +
             '</div>' +
             '</div>' +
             '</div>';
 
 
         var headLogo = $('<header class="logo">');
-        var img = $('<img src="./assets/css/sunroof.png" class="openLogo">');
+        var img = $('<img src="./assets/images/sunroof.png" class="openLogo">');
         var main = $('<main id="main" class="mainStyle overlay">');
         var searchBtn = $('<button id="searchBtn" class="btnStyle btn btn-lg active">');
         var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active">');
@@ -110,7 +110,7 @@ $(function() {
             '</fb:login-button>';*/
 
         var headLogo = $('<header class="createEventLogo">');
-        var img = $('<img src="./assets/css/sunroof.png">');
+        var img = $('<img src="./assets/images/sunroof.png">');
         var mapContainer = $('<div id="map" class="createPageMap">');
         var form = $('<form class="eventForm">');
         var address = $('<h4>');
@@ -129,8 +129,8 @@ $(function() {
         var labelSportChoice = $('<label for="sportsChoice">');
         var labelStartTime = $('<label for="startTime">');
         var gameStartTime = $('<input type="text" name="startTime" id="startTime">');
-        var labelDurationTime = $('<label for="DurationTime" id="durationTime">');
-        var gameDurationTime = $('<input type="text" name="DurationTime">');
+        var labelDurationTime = $('<label for="DurationTime">');
+        var gameDurationTime = $('<input type="text" name="DurationTime" id="durationTime">');
         var labelTeamSize = $('<label for="teamSize">');
         var teamSize = $('<input type="text" name="teamSize" id="teamSize">');
         var labelBenchSeats = $('<label for="benchSeats">');
