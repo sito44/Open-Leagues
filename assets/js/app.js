@@ -11,6 +11,8 @@ $(function() {
     };
     firebase.initializeApp(config);
     var OLdatabase = firebase.database();
+
+    //Linking Facebook
     
     window.fbAsyncInit = function() {
         FB.init({
@@ -19,12 +21,15 @@ $(function() {
             xfbml: true,
             version: 'v2.11'
         });
+
+
         FB.getLoginStatus(function(response) {
             statusChangeCallback(response);
         });
 
 
     };
+
     (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) { return; }
@@ -82,12 +87,12 @@ $(function() {
         var img = $('<img src="./assets/images/sunroof.png" class="openLogo">');
         var main = $('<main id="main" class="mainStyle overlay">');
         var searchBtn = $('<button id="searchBtn" class="btnStyle btn btn-lg active">');
-        var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active">');
+        //var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active">');
         searchBtn.text('Search');
-        createBtn.text('Create Event');
+        //createBtn.text('Create Event');
         headLogo.html(img);
         main.append(searchBtn);
-        main.append(createBtn);
+        //main.append(createBtn);
         elementArray.push(carousel);
         elementArray.push(headLogo);
         elementArray.push(main);
@@ -98,7 +103,7 @@ $(function() {
     function createPage() {
 
         emptyAppContainer();
-        //add FB button to page
+        
 
 
 
