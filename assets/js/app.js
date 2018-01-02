@@ -213,7 +213,7 @@ $(function() {
         initMap();
 
         login();
-    }
+    });
 
 
     // function that is used to append the elements of the landing page
