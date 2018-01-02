@@ -87,12 +87,12 @@ $(function() {
         var img = $('<img src="./assets/images/sunroof.png" class="openLogo">');
         var main = $('<main id="main" class="mainStyle overlay">');
         var searchBtn = $('<button id="searchBtn" class="btnStyle btn btn-lg active">');
-        var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active">');
+        //var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active">');
         searchBtn.text('Search');
-        createBtn.text('Create Event');
+        //createBtn.text('Create Event');
         headLogo.html(img);
         main.append(searchBtn);
-        main.append(createBtn);
+        //main.append(createBtn);
         elementArray.push(carousel);
         elementArray.push(headLogo);
         elementArray.push(main);
