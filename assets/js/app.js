@@ -114,7 +114,11 @@ $(function() {
 
 
         FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
+             if (response.status === 'connected') {
+                console.log('logged in and authenticated');
+                } else {
+                console.log('not authenticated');
+                }
         });
 
 
