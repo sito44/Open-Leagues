@@ -104,6 +104,50 @@ $(function() {
 
         emptyAppContainer();
 
+        window.fbAsyncInit = function() {
+        FB.init({
+            appId: '316009212235911',
+            cookie: true,
+            xfbml: true,
+            version: 'v2.11'
+        });
+
+
+        FB.getLoginStatus(function(response) {
+             if (response.status === 'connected') {
+                console.log('logged in and authenticated');
+                } else {
+                console.log('not authenticated');
+                }
+        });
+
+
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+        //take this off if shit breaks
+        function login() {
+            FB.login(function(response) {
+                if (response.status === 'connected') {
+                console.log('logged in and authenticated');
+                } else {
+                console.log('not authenticated');
+                }
+
+            
+            });
+        }
+        
+    }
+
 
         var childElements = [];
 
@@ -168,7 +212,7 @@ $(function() {
         appContainer.append(main);
         initMap();
 
-         window.fbAsyncInit = function() {
+        window.fbAsyncInit = function() {
         FB.init({
             appId: '316009212235911',
             cookie: true,
