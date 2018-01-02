@@ -39,19 +39,19 @@ $(function() {
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
-    function statusChangeCallback(response) {
-        if (response.status === 'connected') {
-            console.log('logged in and authenticated');
-        } else {
-            console.log('not authenticated');
-        }
-    }
+    // function statusChangeCallback(response) {
+    //     if (response.status === 'connected') {
+    //         console.log('logged in and authenticated');
+    //     } else {
+    //         console.log('not authenticated');
+    //     }
+    // }
 
-    function checkLoginState() {
-        FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
-        });
-    }
+    // function checkLoginState() {
+    //     FB.getLoginStatus(function(response) {
+    //         statusChangeCallback(response);
+    //     });
+    // }
 
 
     var elementArray = [];
@@ -103,6 +103,19 @@ $(function() {
     function createPage() {
 
         emptyAppContainer();
+
+        //take this off if shit breaks
+        function login() {
+            FB.login(function(response) {
+                if (response.status === 'connected') {
+                console.log('logged in and authenticated');
+                } else {
+                console.log('not authenticated');
+                }
+
+            
+            });
+        }
         
 
 
