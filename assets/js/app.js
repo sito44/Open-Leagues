@@ -87,12 +87,12 @@ $(function() {
         var img = $('<img src="./assets/images/sunroof.png" class="openLogo">');
         var main = $('<main id="main" class="mainStyle overlay">');
         var searchBtn = $('<button id="searchBtn" class="btnStyle btn btn-lg active">');
-        //var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active">');
+        var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active" onclick="login()">');
         searchBtn.text('Search');
-        //createBtn.text('Create Event');
+        createBtn.text('Create Event');
         headLogo.html(img);
         main.append(searchBtn);
-        //main.append(createBtn);
+        main.append(createBtn);
         elementArray.push(carousel);
         elementArray.push(headLogo);
         elementArray.push(main);
@@ -103,50 +103,6 @@ $(function() {
     function createPage() {
 
         emptyAppContainer();
-
-        window.fbAsyncInit = function() {
-        FB.init({
-            appId: '316009212235911',
-            cookie: true,
-            xfbml: true,
-            version: 'v2.11'
-        });
-
-
-        FB.getLoginStatus(function(response) {
-             if (response.status === 'connected') {
-                console.log('logged in and authenticated');
-                } else {
-                console.log('not authenticated');
-                }
-        });
-
-
-    };
-
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) { return; }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-        //take this off if shit breaks
-        function login() {
-            FB.login(function(response) {
-                if (response.status === 'connected') {
-                console.log('logged in and authenticated');
-                } else {
-                console.log('not authenticated');
-                }
-
-            
-            });
-        }
-        
-
 
 
         var childElements = [];
@@ -207,11 +163,58 @@ $(function() {
 
         appender(childElements, form);
         headLogo.append(img);
-        /*main.append(fbBtn);*/
         main.append(mapContainer);
         main.append(form);
         appContainer.append(main);
         initMap();
+
+         window.fbAsyncInit = function() {
+        FB.init({
+            appId: '316009212235911',
+            cookie: true,
+            xfbml: true,
+            version: 'v2.11'
+        });
+
+
+        FB.getLoginStatus(function(response) {
+             if (response.status === 'connected') {
+                console.log('logged in and authenticated');
+                } else {
+                console.log('not authenticated');
+                }
+        });
+
+
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+        //take this off if shit breaks
+        function login() {
+            FB.login(function(response) {
+                if (response.status === 'connected') {
+                console.log('logged in and authenticated');
+                } else {
+                console.log('not authenticated');
+                }
+
+            
+            });
+        }
+        
+
+
+
+
+
     }
 
     // function that is used to append the elements of the landing page
