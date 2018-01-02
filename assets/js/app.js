@@ -87,7 +87,7 @@ $(function() {
         var img = $('<img src="./assets/images/sunroof.png" class="openLogo">');
         var main = $('<main id="main" class="mainStyle overlay">');
         var searchBtn = $('<button id="searchBtn" class="btnStyle btn btn-lg active">');
-        var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active" onclick="login()">');
+        var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active">');
         searchBtn.text('Search');
         createBtn.text('Create Event');
         headLogo.html(img);
@@ -211,6 +211,9 @@ $(function() {
         main.append(form);
         appContainer.append(main);
         initMap();
+
+        login();
+    }
 
 
     // function that is used to append the elements of the landing page
