@@ -111,6 +111,7 @@ $(function() {
                 xfbml: true,
                 version: 'v2.11'
             });
+        }
 
 
         FB.getLoginStatus(function(response) {
@@ -120,9 +121,6 @@ $(function() {
                 console.log('not authenticated');
                 }
         });
-
-
-
 
         (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -141,10 +139,9 @@ $(function() {
                 } else {
                 console.log('not authenticated');
                 }
-
-            
             });
         }
+
 
 
         var childElements = [];
@@ -293,4 +290,4 @@ $(function() {
         $('#benchSeats').val('');
     });
 
-};
+});
