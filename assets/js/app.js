@@ -44,12 +44,12 @@ $(function() {
         var img = $('<img src="./assets/images/sunroof.png" class="openLogo">');
         var main = $('<main id="main" class="mainStyle overlay">');
         var searchBtn = $('<button id="searchBtn" class="btnStyle btn btn-lg active">');
-        var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active">');
+        //var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active">');
         searchBtn.text('Search');
-        createBtn.text('Create Event');
+        //createBtn.text('Create Event');
         headLogo.html(img);
         main.append(searchBtn);
-        main.append(createBtn);
+        //main.append(createBtn);
         elementArray.push(carousel);
         elementArray.push(headLogo);
         elementArray.push(main);
@@ -79,6 +79,14 @@ $(function() {
 
         };
 
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
         function login() {
             FB.login(function(reponse) {
                 if (response.status === 'connected') {
@@ -86,14 +94,7 @@ $(function() {
                 } else if (response.status === 'not_authorized') {
                     console.log('we are not connected');
                 } else {
-                    console.log('you are not connected');
-                    (function(d, s, id){
-                        var js, fjs = d.getElementsByTagName(s)[0];
-                        if (d.getElementById(id)) {return;}
-                        js = d.createElement(s); js.id = id;
-                        js.src = "https://connect.facebook.net/en_US/sdk.js";
-                        fjs.parentNode.insertBefore(js, fjs);
-                    }(document, 'script', 'facebook-jssdk'));
+                    console.log('you are not connected')
                 }
 
             });
@@ -164,8 +165,6 @@ $(function() {
         main.append(form);
         appContainer.append(main);
         initMap();
-
-        FBlogin()
 
     };
 
