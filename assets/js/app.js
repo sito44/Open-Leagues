@@ -216,7 +216,8 @@ $(function() {
 
     }
     // adds click handler onto the create event button - event delegation
-    $('body').on('click', '#createBtn', createPage, FBlogin);
+    $('body').on('click', '#createBtn', createPage);
+    $('body').on('click', '#createBtn', FBlogin);
     /*$('body').on('click', '#searchBtn', searchPage);*/
 
 
