@@ -56,6 +56,52 @@ $(function() {
 
     }
 
+      //function that initializes FB etc..
+    function FBlogin() {
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '316009212235911',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v2.11'
+            });
+
+            FB.getLoginStatus(function(response) {
+                if (response.status === 'connected') {
+                    console.log('we are connected');
+                } else if (response.status === 'not_authorized') {
+                    console.log('we are not connected');
+                } else {
+                    console.log('you are not connected')
+                }
+
+            });
+
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        function login() {
+            FB.login(function(reponse) {
+                if (response.status === 'connected') {
+                    console.log('we are connected');
+                } else if (response.status === 'not_authorized') {
+                    console.log('we are not connected');
+                } else {
+                    console.log('you are not connected')
+                }
+
+            });
+           
+        }
+    }
+
     //function that generates the create event page
     function createPage() {
 
@@ -120,53 +166,11 @@ $(function() {
         appContainer.append(main);
         initMap();
 
+        FBlogin()
+
     };
 
-    //function that initializes FB etc..
-    function FBlogin() {
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '316009212235911',
-                cookie     : true,
-                xfbml      : true,
-                version    : 'v2.11'
-            });
-
-            FB.getLoginStatus(function(response) {
-                if (response.status === 'connected') {
-                    console.log('we are connected');
-                } else if (response.status === 'not_authorized') {
-                    console.log('we are not connected');
-                } else {
-                    console.log('you are not connected')
-                }
-
-            });
-
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
-        function login() {
-            FB.login(function(reponse) {
-                if (response.status === 'connected') {
-                    console.log('we are connected');
-                } else if (response.status === 'not_authorized') {
-                    console.log('we are not connected');
-                } else {
-                    console.log('you are not connected')
-                }
-
-            });
-           
-        }
-    }
+  
 
 
     // function that is used to append the elements of the landing page
@@ -217,7 +221,6 @@ $(function() {
     }
     // adds click handler onto the create event button - event delegation
     $('body').on('click', '#createBtn', createPage);
-    $('body').on('click', '#createBtn', FBlogin);
     /*$('body').on('click', '#searchBtn', searchPage);*/
 
 
