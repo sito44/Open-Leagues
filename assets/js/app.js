@@ -11,49 +11,6 @@ $(function() {
     };
     firebase.initializeApp(config);
     var OLdatabase = firebase.database();
-
-    //Linking Facebook
-    
-    // window.fbAsyncInit = function() {
-    //     FB.init({
-    //         appId: '316009212235911',
-    //         cookie: true,
-    //         xfbml: true,
-    //         version: 'v2.11'
-    //     });
-
-
-    //     FB.getLoginStatus(function(response) {
-    //         statusChangeCallback(response);
-    //     });
-
-
-    // };
-
-    // (function(d, s, id) {
-    //     var js, fjs = d.getElementsByTagName(s)[0];
-    //     if (d.getElementById(id)) { return; }
-    //     js = d.createElement(s);
-    //     js.id = id;
-    //     js.src = "https://connect.facebook.net/en_US/sdk.js";
-    //     fjs.parentNode.insertBefore(js, fjs);
-    // }(document, 'script', 'facebook-jssdk'));
-
-    // function statusChangeCallback(response) {
-    //     if (response.status === 'connected') {
-    //         console.log('logged in and authenticated');
-    //     } else {
-    //         console.log('not authenticated');
-    //     }
-    // }
-
-    // function checkLoginState() {
-    //     FB.getLoginStatus(function(response) {
-    //         statusChangeCallback(response);
-    //     });
-    // }
-
-
     var elementArray = [];
     var appContainer = $('#app');
     var map;
@@ -104,6 +61,8 @@ $(function() {
 
         emptyAppContainer();
 
+
+        //Connecting to FB
         window.fbAsyncInit = function() {
             FB.init({
                 appId: '316009212235911',
@@ -111,16 +70,17 @@ $(function() {
                 xfbml: true,
                 version: 'v2.11'
             });
+        
+
+
+            FB.getLoginStatus(function(response) {
+                if (response.status === 'connected') {
+                    console.log('logged in and authenticated');
+                    } else {
+                    console.log('not authenticated');
+                    }
+            });
         }
-
-
-        FB.getLoginStatus(function(response) {
-             if (response.status === 'connected') {
-                console.log('logged in and authenticated');
-                } else {
-                console.log('not authenticated');
-                }
-        });
 
         (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -131,7 +91,6 @@ $(function() {
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
-        //take this off if shit breaks
         function login() {
             FB.login(function(response) {
                 if (response.status === 'connected') {
@@ -147,10 +106,6 @@ $(function() {
         var childElements = [];
 
         var main = $('<main class="createPageStyle">');
-
-        /*var fbBtn = '<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">' +
-            '</fb:login-button>';*/
-
         var headLogo = $('<header class="createEventLogo">');
         var img = $('<img src="./assets/images/sunroof.png">');
         var mapContainer = $('<div id="map" class="createPageMap">');
