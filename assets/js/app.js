@@ -60,6 +60,8 @@ $(function() {
     //function that generates the create event page
     function createPage() {
 
+        $('#fbBtn').hide();
+
         emptyAppContainer();
 
         var childElements = [];
