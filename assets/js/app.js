@@ -11,7 +11,14 @@ $(function() {
     };
     firebase.initializeApp(config);
     var OLdatabase = firebase.database();
-    
+    var elementArray = [];
+    var searchMapArray = [];
+    var appContainer = $('#app');
+    var map;
+    var map2;
+    var ltLgString;
+    var ltLgArray;
+
     window.fbAsyncInit = function() {
         FB.init({
             appId: '316009212235911',
@@ -49,14 +56,11 @@ $(function() {
     }
 
 
-    var elementArray = [];
-    var appContainer = $('#app');
-    var map;
 
     landingPage();
     appender(elementArray, appContainer);
 
-    // function that generates the landing page
+    // -------------------------------------------------function that generates the landing page
     function landingPage() {
 
         emptyAppContainer();
@@ -94,20 +98,19 @@ $(function() {
 
     }
 
-    //function that generates the create event page
+    //-----------------------------------------------function that generates the create event page
     function createPage() {
 
         emptyAppContainer();
-        //add FB button to page
 
 
+        elementArray = [];
 
         var childElements = [];
 
         var main = $('<main class="createPageStyle">');
 
-        /*var fbBtn = '<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">' +
-            '</fb:login-button>';*/
+
 
         var headLogo = $('<header class="createEventLogo">');
         var img = $('<img src="./assets/images/sunroof.png">');
@@ -161,13 +164,34 @@ $(function() {
         appender(childElements, form);
         headLogo.append(img);
         /*main.append(fbBtn);*/
-        main.append(mapContainer);
-        main.append(form);
+        elementArray.push(headLogo);
+        elementArray.push(mapContainer);
+        elementArray.push(form);
+        appender(elementArray, main);
         appContainer.append(main);
         initMap();
     }
 
-    // function that is used to append the elements of the landing page
+    function searchPage() {
+        emptyAppContainer();
+
+        elementArray = [];
+
+        var main = $('<main class="createPageStyle">');
+        var headLogo = $('<header class="createEventLogo">');
+        var img = $('<img src="./assets/images/sunroof.png">');
+        var mapContainer = $('<div id="searchMap" class="createPageMap">');
+        headLogo.append(img);
+        elementArray.push(headLogo);
+        elementArray.push(mapContainer);
+        appender(elementArray, main);
+        appContainer.append(main);
+        initMap2();
+
+
+    }
+
+    // -----------------------------------------function that is used to append the elements of the landing page
     function appender(elements, container) {
 
         for (var i = 0; i < elements.length; i++) {
@@ -175,18 +199,18 @@ $(function() {
         }
 
     }
-    //function that empties the app div
+    //------------------------------------------function that empties the app div
     function emptyAppContainer() {
         appContainer.empty();
     }
-    // initialize google maps function on create event page
+    // -----------------------------------------initialize google maps function on create event page
     function initMap() {
 
         var marker;
 
         map = new google.maps.Map(document.getElementById('map'), {
             center: { lat: 32.852, lng: -117.185 },
-            zoom: 9
+            zoom: 10
         });
 
         function placeMarker(location) {
@@ -195,6 +219,7 @@ $(function() {
             } else {
                 marker = new google.maps.Marker({
                     position: location,
+                    animation: google.maps.Animation.DROP,
                     map: map
                 });
             }
@@ -204,41 +229,111 @@ $(function() {
         google.maps.event.addListener(map, 'click', function(event) {
             var ltLg = event.latLng;
             placeMarker(ltLg);
-            var x = marker.getPosition().toString();
-            /*var s = x.formatted_address;*/
-            console.log(x);
-            console.log(typeof x);
-            /*console.log(s);*/
+            ltLgString = marker.getPosition().toString();
+
 
         });
 
     }
-    // adds click handler onto the create event button - event delegation
+    // -----------------------------------------initialize google maps function on search page
+    function initMap2() {
+
+        let marker;
+
+        map2 = new google.maps.Map(document.getElementById('searchMap'), {
+            center: { lat: 32.852, lng: -117.185 },
+            zoom: 10
+        });
+
+        function placeMarkers(eventData) {
+            for (let m = 0; m < eventData.length; m++) {
+                var lt = parseFloat(eventData[m].lat);
+                var lg = parseFloat(eventData[m].lng);
+                var selectedSport = eventData[m].selectedSport;
+                var startTime = eventData[m].startTime;
+                var duration = eventData[m].duration;
+                var teamSize = eventData[m].teamSize;
+                var benchSeats = eventData[m].benchSeats;
+                var contentString =
+                    '<div id="eventInfo">' +
+                    '<h2>Open ' + selectedSport + ' League</h2>' +
+                    '<p>Start Time: ' + startTime + '</p>' +
+                    '<p>Duration: ' + duration + '</p>' +
+                    '<p>Team Size: ' + teamSize + '</p>' +
+                    '<p>Bench Seats: ' + benchSeats + '</p>';
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+                console.log(lt);
+                marker = new google.maps.Marker({
+                    map: map2,
+                    animation: google.maps.Animation.DROP,
+                    position: { lat: lt, lng: lg }
+                });
+            /*google.maps.event.addListener(marker, 'click', function() {
+                // do something with this marker ...
+                $(this).infowindow.open(map2, marker);
+            });*/
+            }
+            marker.addListener('click', function() {
+                infowindow.open(map2, marker);
+            });
+
+
+        }
+
+        /*google.maps.event.addListener(map, 'click', function(event) {
+            var ltLg = event.latLng;
+            placeMarker(ltLg);
+            ltLgString = marker.getPosition().toString();
+
+
+        });*/
+        placeMarkers(searchMapArray);
+
+    }
+
+    function ltLgConverter(string) {
+        var ar1 = string.split('');
+        ar1.shift();
+        ar1.pop();
+        var t = ar1.join('');
+        ltLgArray = t.split(',');
+
+
+
+    }
+
+    // ----------------------------------adds click handler onto the create event button - event delegation
     $('body').on('click', '#createBtn', createPage);
-    /*$('body').on('click', '#searchBtn', searchPage);*/
+    $('body').on('click', '#searchBtn', searchPage);
 
 
 
 
-    // firebase calls 
+    // ----------------------------------firebase calls 
 
     $('body').on('click', '#eventSubmit', function(event) {
         event.preventDefault();
-
+        ltLgConverter(ltLgString);
         var sportInput = $("#selectedSport").val().trim();
         var startTimeInput = $("#startTime").val().trim();
         var durationInput = $("#durationTime").val().trim();
         var teamSizeInput = $("#teamSize").val().trim();
         var benchSeatsInput = $("#benchSeats").val().trim();
 
+
         var currentUser = {
+            lat: ltLgArray[0],
+            lng: ltLgArray[1],
             selectedSport: sportInput,
             startTime: startTimeInput,
             duration: durationInput,
             teamSize: teamSizeInput,
             benchSeats: benchSeatsInput
         };
-        OLdatabase.ref().push(currentUser);
+        OLdatabase.ref('userEvents/').push(currentUser);
         $('#selectedSport').val('');
         $('#startTime').val('');
         $('#durationTime').val('');
@@ -246,4 +341,11 @@ $(function() {
         $('#benchSeats').val('');
     });
 
+    OLdatabase.ref('userEvents/').on("child_added", function(snapshot) {
+        var userEntry = snapshot.val();
+        searchMapArray.push(userEntry);
+        /*console.log(searchMapArray);*/
+        console.log(searchMapArray[1]);
+
+    });
 });
