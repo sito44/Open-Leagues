@@ -44,17 +44,61 @@ $(function() {
         var img = $('<img src="./assets/images/sunroof.png" class="openLogo">');
         var main = $('<main id="main" class="mainStyle overlay">');
         var searchBtn = $('<button id="searchBtn" class="btnStyle btn btn-lg active">');
-        //var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active">');
+        var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active">');
         searchBtn.text('Search');
-        //createBtn.text('Create Event');
+        createBtn.text('Create Event');
         headLogo.html(img);
         main.append(searchBtn);
-        //main.append(createBtn);
+        main.append(createBtn);
         elementArray.push(carousel);
         elementArray.push(headLogo);
         elementArray.push(main);
 
     }
+
+    //FB Stuff
+    window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '316009212235911',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v2.11'
+            });
+
+            FB.getLoginStatus(function(response) {
+                if (response.status === 'connected') {
+                    console.log('we are connected');
+                } else if (response.status === 'not_authorized') {
+                    console.log('we are not connected');
+                } else {
+                    console.log('you are not connected')
+                }
+
+            });
+
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        function login() {
+            FB.login(function(reponse) {
+                if (response.status === 'connected') {
+                    console.log('we are connected');
+                } else if (response.status === 'not_authorized') {
+                    console.log('we are not connected');
+                } else {
+                    console.log('you are not connected')
+                }
+
+            });
+           
+        }
 
     
     //function that generates the create event page
@@ -175,7 +219,10 @@ $(function() {
 
     }
     // adds click handler onto the create event button - event delegation
-    $('body').on('click', '#createBtn', createPage);
+    $('body').on('click', '#createBtn', function() {
+        createPage();
+        login();
+    });
     /*$('body').on('click', '#searchBtn', searchPage);*/
 
 
