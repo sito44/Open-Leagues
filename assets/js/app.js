@@ -1,6 +1,7 @@
 'use strict';
 $(function() {
 
+    //--------------------------------------fireBase Initialization
     var config = {
         apiKey: "AIzaSyD4zfoBJAqzq1qJNqAbW87-OlVXbOId8Hg",
         authDomain: "open-leagues.firebaseapp.com",
@@ -10,6 +11,8 @@ $(function() {
         messagingSenderId: "827491709161"
     };
     firebase.initializeApp(config);
+
+    //--------------------------------------------------Global Variables
     var OLdatabase = firebase.database();
     var elementArray = [];
     var searchMapArray = [];
@@ -18,44 +21,6 @@ $(function() {
     var map2;
     var ltLgString;
     var ltLgArray;
-
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId: '316009212235911',
-            cookie: true,
-            xfbml: true,
-            version: 'v2.11'
-        });
-        FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
-        });
-
-
-    };
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) { return; }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-    function statusChangeCallback(response) {
-        if (response.status === 'connected') {
-            console.log('logged in and authenticated');
-        } else {
-            console.log('not authenticated');
-        }
-    }
-
-    function checkLoginState() {
-        FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
-        });
-    }
-
-
 
     landingPage();
     appender(elementArray, appContainer);
@@ -98,20 +63,66 @@ $(function() {
 
     }
 
+
+
+    //------------------------------------------------------FaceBook API Initialization
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: '316009212235911',
+            cookie: true,
+            xfbml: true,
+            version: 'v2.11'
+        });
+
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                console.log('we are connected');
+            } else if (response.status === 'not_authorized') {
+                console.log('we are not connected');
+            } else {
+                console.log('you are not connected')
+            }
+
+        });
+
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function login() {
+        FB.login(function(reponse) {
+            if (response.status === 'connected') {
+                console.log('we are connected');
+            } else if (response.status === 'not_authorized') {
+                console.log('we are not connected');
+            } else {
+                console.log('you are not connected')
+            }
+
+        });
+
+    }
+
+
     //-----------------------------------------------function that generates the create event page
+
     function createPage() {
+
+
 
         emptyAppContainer();
 
 
-        elementArray = [];
-
         var childElements = [];
 
         var main = $('<main class="createPageStyle">');
-
-
-
         var headLogo = $('<header class="createEventLogo">');
         var img = $('<img src="./assets/images/sunroof.png">');
         var mapContainer = $('<div id="map" class="createPageMap">');
@@ -163,14 +174,18 @@ $(function() {
 
         appender(childElements, form);
         headLogo.append(img);
-        /*main.append(fbBtn);*/
         elementArray.push(headLogo);
         elementArray.push(mapContainer);
         elementArray.push(form);
         appender(elementArray, main);
+
         appContainer.append(main);
         initMap();
-    }
+
+    };
+
+
+
 
     function searchPage() {
         emptyAppContainer();
@@ -271,10 +286,10 @@ $(function() {
                     animation: google.maps.Animation.DROP,
                     position: { lat: lt, lng: lg }
                 });
-            /*google.maps.event.addListener(marker, 'click', function() {
-                // do something with this marker ...
-                $(this).infowindow.open(map2, marker);
-            });*/
+                /*google.maps.event.addListener(marker, 'click', function() {
+                    // do something with this marker ...
+                    $(this).infowindow.open(map2, marker);
+                });*/
             }
             marker.addListener('click', function() {
                 infowindow.open(map2, marker);
@@ -283,16 +298,11 @@ $(function() {
 
         }
 
-        /*google.maps.event.addListener(map, 'click', function(event) {
-            var ltLg = event.latLng;
-            placeMarker(ltLg);
-            ltLgString = marker.getPosition().toString();
 
-
-        });*/
         placeMarkers(searchMapArray);
 
     }
+
 
     function ltLgConverter(string) {
         var ar1 = string.split('');
@@ -306,13 +316,17 @@ $(function() {
     }
 
     // ----------------------------------adds click handler onto the create event button - event delegation
-    $('body').on('click', '#createBtn', createPage);
-    $('body').on('click', '#searchBtn', searchPage);
+
+    $('body').on('click', '#createBtn', function() {
+        createPage();
+        login();
+    });
+    $('body').on('click', '#searchBtn', function() {
+        searchPage();
+    });
 
 
-
-
-    // ----------------------------------firebase calls 
+    // -------------------------------------------------------firebase calls 
 
     $('body').on('click', '#eventSubmit', function(event) {
         event.preventDefault();
@@ -344,7 +358,6 @@ $(function() {
     OLdatabase.ref('userEvents/').on("child_added", function(snapshot) {
         var userEntry = snapshot.val();
         searchMapArray.push(userEntry);
-        /*console.log(searchMapArray);*/
         console.log(searchMapArray[1]);
 
     });
