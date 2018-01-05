@@ -11,44 +11,6 @@ $(function() {
     };
     firebase.initializeApp(config);
     var OLdatabase = firebase.database();
-    
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId: '316009212235911',
-            cookie: true,
-            xfbml: true,
-            version: 'v2.11'
-        });
-        FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
-        });
-
-
-    };
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) { return; }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-    function statusChangeCallback(response) {
-        if (response.status === 'connected') {
-            console.log('logged in and authenticated');
-        } else {
-            console.log('not authenticated');
-        }
-    }
-
-    function checkLoginState() {
-        FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
-        });
-    }
-
-
     var elementArray = [];
     var appContainer = $('#app');
     var map;
@@ -94,21 +56,61 @@ $(function() {
 
     }
 
+    //FB Stuff
+    window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '316009212235911',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v2.11'
+            });
+
+            FB.getLoginStatus(function(response) {
+                if (response.status === 'connected') {
+                    console.log('we are connected');
+                } else if (response.status === 'not_authorized') {
+                    console.log('we are not connected');
+                } else {
+                    console.log('you are not connected')
+                }
+
+            });
+
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        function login() {
+            FB.login(function(reponse) {
+                if (response.status === 'connected') {
+                    console.log('we are connected');
+                } else if (response.status === 'not_authorized') {
+                    console.log('we are not connected');
+                } else {
+                    console.log('you are not connected')
+                }
+
+            });
+           
+        }
+
+    
     //function that generates the create event page
     function createPage() {
 
+        $('#fbBtn').hide();
+
         emptyAppContainer();
-        //add FB button to page
-
-
 
         var childElements = [];
 
         var main = $('<main class="createPageStyle">');
-
-        /*var fbBtn = '<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">' +
-            '</fb:login-button>';*/
-
         var headLogo = $('<header class="createEventLogo">');
         var img = $('<img src="./assets/images/sunroof.png">');
         var mapContainer = $('<div id="map" class="createPageMap">');
@@ -160,12 +162,15 @@ $(function() {
 
         appender(childElements, form);
         headLogo.append(img);
-        /*main.append(fbBtn);*/
         main.append(mapContainer);
         main.append(form);
         appContainer.append(main);
         initMap();
-    }
+
+    };
+
+  
+
 
     // function that is used to append the elements of the landing page
     function appender(elements, container) {
@@ -214,7 +219,10 @@ $(function() {
 
     }
     // adds click handler onto the create event button - event delegation
-    $('body').on('click', '#createBtn', createPage);
+    $('body').on('click', '#createBtn', function() {
+        createPage();
+        login();
+    });
     /*$('body').on('click', '#searchBtn', searchPage);*/
 
 

@@ -18,6 +18,51 @@
     <script src="./assets/js/app.js"></script>
 </head>
 
+<script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '316009212235911',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v2.11'
+            });
+
+            FB.getLoginStatus(function(response) {
+                if (response.status === 'connected') {
+                    console.log('we are connected');
+                } else if (response.status === 'not_authorized') {
+                    console.log('we are not connected');
+                } else {
+                    console.log('you are not connected')
+                }
+
+            });
+
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        function login() {
+            FB.login(function(reponse) {
+                if (response.status === 'connected') {
+                    console.log('we are connected');
+                } else if (response.status === 'not_authorized') {
+                    console.log('we are not connected');
+                } else {
+                    console.log('you are not connected')
+                }
+
+            });
+           
+        }
+</script>
+
 <body>
 
     
@@ -25,10 +70,13 @@
     
     <div id="app"></div>
 
-    <fb:login-button 
-        scope="public_profile,email"
-        onlogin="checkLoginState();">
-    </fb:login-button>
+    <!--<div id=fbBtn>
+        <button class="btnStyle btn btn-lg active" id="createBtn" onclick='login()'>Create Event</button>
+    </div>
+-->
+    
+
+
     <!-- link to bootstrap javascript cdn -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
