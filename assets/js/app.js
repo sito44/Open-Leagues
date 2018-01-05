@@ -29,7 +29,7 @@ $(function() {
     function landingPage() {
 
         emptyAppContainer();
-
+      
         var carousel =
 
             '<div id="carouselExampleSlidesOnly" class="carousel slide full-screen" data-ride="carousel">' +
@@ -80,7 +80,7 @@ $(function() {
             } else if (response.status === 'not_authorized') {
                 console.log('we are not connected');
             } else {
-                console.log('you are not connected')
+                console.log('you are not connected');
             }
 
         });
@@ -103,7 +103,7 @@ $(function() {
             } else if (response.status === 'not_authorized') {
                 console.log('we are not connected');
             } else {
-                console.log('you are not connected')
+                console.log('you are not connected');
             }
 
         });
@@ -119,7 +119,7 @@ $(function() {
 
         emptyAppContainer();
 
-
+        elementArray = [];
         var childElements = [];
 
         var main = $('<main class="createPageStyle">');
@@ -182,7 +182,7 @@ $(function() {
         appContainer.append(main);
         initMap();
 
-    };
+    }
 
 
 
