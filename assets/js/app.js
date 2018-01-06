@@ -22,6 +22,7 @@ $(function() {
     var map2;
     var ltLgString;
     var ltLgArray;
+    var hasBeenClicked = false;
 
     landingPage();
     appender(elementArray, appContainer);
@@ -31,10 +32,28 @@ $(function() {
         var modal = $('<div id="id01" class="w3-modal"></div>');
         var modalContent = $('<div class="w3-modal-content">');
         var modalTxt = $('<p class="modalText">You Must Log In With Facebook to Continue</p>');
+        var modalBtn = $('<button class="modalButton">Retry</button>');
         modal.prepend(modalContent);
         modalContent.prepend(modalTxt);
+        modalContent.append(modalBtn);
         $('#app').prepend(modal);
     }
+
+ // -----------------------------------------FB button functionality
+    function checkBtnClick() {
+        $('#loginbutton').click(function() {
+            hasBeenClicked = true;
+        });
+
+        if (hasBeenClicked) {
+            $('#id01').hide();
+        } else {
+            $('#id01').show();
+        }
+
+
+    }
+
 
     // -------------------------------------------------function that generates the landing page
     function landingPage() {
@@ -114,14 +133,12 @@ $(function() {
     }(document, 'script', 'facebook-jssdk'));
 
     function login() {
-        FB.login(function(reponse) {
+        FB.login(function(response) {
+            console.log(response.status)
             if (response.status === 'connected') {
                 console.log('we are connected');
-            } else if (response.status === 'not_authorized') {
-                console.log('we are not connected');
             } else {
-                createModal();
-                console.log('you are not connected');
+                createModal(); 
             }
 
         });
@@ -195,7 +212,8 @@ $(function() {
         appContainer.append(main);
         initMap();
 
-        createModal();
+        //createModal();
+        // checkBtnClick();
 
         
 
@@ -340,6 +358,11 @@ $(function() {
     });
     $('body').on('click', '#searchBtn', function() {
         searchPage();
+    });
+
+    $('body').on('click', '.modalButton', function() {
+        login();
+
     });
 
 
