@@ -130,8 +130,6 @@ $(function() {
         FB.login(function(reponse) {
             if (response.status === 'connected') {
                 console.log('we are connected');
-            } else if (response.status === 'not_authorized') {
-                console.log('we are not connected');
             } else {
                 createModal();
                 console.log('you are not connected');
@@ -208,8 +206,8 @@ $(function() {
         appContainer.append(main);
         initMap();
 
-        createModal();
-        checkBtnClick();
+        //createModal();
+        // checkBtnClick();
 
         
 
