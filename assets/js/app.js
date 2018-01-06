@@ -191,6 +191,8 @@ $(function() {
         appContainer.append(main);
         initMap();
 
+        createModal();
+
         
 
     }
