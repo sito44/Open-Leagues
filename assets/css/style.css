@@ -89,6 +89,7 @@ input {
 
 
 .createPageMap {
+    display: flex;
     position:relative;
     width: 100%;
     height:75%;

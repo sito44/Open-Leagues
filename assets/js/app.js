@@ -130,7 +130,7 @@ $(function() {
         FB.login(function(reponse) {
             if (response.status === 'connected') {
                 console.log('we are connected');
-            } else {
+            } else if (response.status === 'not_authorized'){
                 createModal();
                 console.log('you are not connected');
             }
