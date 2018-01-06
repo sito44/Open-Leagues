@@ -111,7 +111,6 @@ $(function() {
                 console.log('we are not connected');
             } else {
                 console.log('you are not connected');
-                createModal();
             }
 
         });
@@ -135,6 +134,7 @@ $(function() {
                 console.log('we are not connected');
             } else {
                 console.log('you are not connected');
+                createModal();
             }
 
         });
