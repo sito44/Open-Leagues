@@ -39,9 +39,12 @@ $(function() {
 
  // -----------------------------------------FB button functionality
     function checkBtnClick() {
-     if ('.uiButtonConfirm' === !clicked) {
-        $(modal).hide();
+    if ('.uiButtonConfirm' === !clicked) {
+        $('#id01').hide();
+        } else { 
+            clicked === false
         }
+
 
     }
 
