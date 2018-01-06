@@ -44,9 +44,9 @@ $(function() {
         });
 
         if (hasBeenClicked) {
-            $('#id01').hide()
+            $('#id01').hide();
         } else {
-            $('#id01').show()
+            $('#id01').show();
         }
 
 
@@ -208,7 +208,7 @@ $(function() {
         appContainer.append(main);
         initMap();
 
-        $('#id01').hide();
+        createModal();
         checkBtnClick();
 
         
