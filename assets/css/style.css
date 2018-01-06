@@ -7,9 +7,6 @@
     border: 1px solid #b1b9c6;
 }
 
-#app {
-    display: flex;
-}
 
 .footer {
     background-color: #b1b9c6;
@@ -110,6 +107,7 @@ input {
     height: 100%;
     width: 100%;
     position: absolute;
+    display: flex;
 }
 
 .sportChoice {
