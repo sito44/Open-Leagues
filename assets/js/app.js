@@ -22,7 +22,7 @@ $(function() {
     var map2;
     var ltLgString;
     var ltLgArray;
-    var clicked = false;
+    var hasBeenClicked = false;
 
     landingPage();
     appender(elementArray, appContainer);
