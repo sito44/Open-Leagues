@@ -1,3 +1,4 @@
+
 'use strict';
 $(function() {
 
@@ -21,12 +22,42 @@ $(function() {
     var map2;
     var ltLgString;
     var ltLgArray;
+    var hasBeenClicked = false;
 
     landingPage();
     appender(elementArray, appContainer);
 
+    // ----------------function to create modal
+    function createModal() {
+        var modal = $('<div id="id01" class="w3-modal"></div>');
+        var modalContent = $('<div class="w3-modal-content">');
+        var modalTxt = $('<p class="modalText">You Must Log In With Facebook to Continue</p>');
+        var modalBtn = $('<button class="modalButton">Retry</button>');
+        modal.prepend(modalContent);
+        modalContent.prepend(modalTxt);
+        modalContent.append(modalBtn);
+        $('#app').prepend(modal);
+    }
+
+ // -----------------------------------------FB button functionality
+    function checkBtnClick() {
+        $('#loginbutton').click(function() {
+            hasBeenClicked = true;
+        });
+
+        if (hasBeenClicked) {
+            $('#id01').hide();
+        } else {
+            $('#id01').show();
+        }
+
+
+    }
+
+
     // -------------------------------------------------function that generates the landing page
     function landingPage() {
+
 
         emptyAppContainer();
 
@@ -46,20 +77,21 @@ $(function() {
             '</div>' +
             '</div>';
 
-
-        var headLogo = $('<header class="logo">');
-        var img = $('<img src="./assets/images/sunroof.png" class="openLogo">');
+        var openText = $('<div class="openText">');
+        var openTextText = $('<p>OPEN LEAGUES</p>') 
+        openText.prepend(openTextText);           
         var main = $('<main id="main" class="mainStyle overlay">');
         var searchBtn = $('<button id="searchBtn" class="btnStyle btn btn-lg active">');
         var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active">');
         searchBtn.text('Search');
         createBtn.text('Create Event');
-        headLogo.html(img);
+        main.append(openText);
         main.append(searchBtn);
         main.append(createBtn);
         elementArray.push(carousel);
-        elementArray.push(headLogo);
         elementArray.push(main);
+
+
 
     }
 
@@ -97,13 +129,12 @@ $(function() {
     }(document, 'script', 'facebook-jssdk'));
 
     function login() {
-        FB.login(function(reponse) {
+        FB.login(function(response) {
+            console.log(response.status)
             if (response.status === 'connected') {
                 console.log('we are connected');
-            } else if (response.status === 'not_authorized') {
-                console.log('we are not connected');
             } else {
-                console.log('you are not connected');
+                createModal(); 
             }
 
         });
@@ -116,15 +147,12 @@ $(function() {
     function createPage() {
 
 
-
         emptyAppContainer();
 
         elementArray = [];
         var childElements = [];
 
         var main = $('<main class="createPageStyle">');
-        var headLogo = $('<header class="createEventLogo">');
-        var img = $('<img src="./assets/images/sunroof.png">');
         var mapContainer = $('<div id="map" class="createPageMap">');
         var form = $('<form class="eventForm">');
         var address = $('<h4>');
@@ -173,8 +201,6 @@ $(function() {
             eventSubmit);
 
         appender(childElements, form);
-        headLogo.append(img);
-        elementArray.push(headLogo);
         elementArray.push(mapContainer);
         elementArray.push(form);
         appender(elementArray, main);
@@ -182,26 +208,31 @@ $(function() {
         appContainer.append(main);
         initMap();
 
+        //createModal();
+        // checkBtnClick();
+
+        
+
     }
 
 
 
 
     function searchPage() {
+
         emptyAppContainer();
 
         elementArray = [];
 
         var main = $('<main class="createPageStyle">');
-        var headLogo = $('<header class="createEventLogo">');
-        var img = $('<img src="./assets/images/sunroof.png">');
         var mapContainer = $('<div id="searchMap" class="createPageMap">');
-        headLogo.append(img);
-        elementArray.push(headLogo);
         elementArray.push(mapContainer);
         appender(elementArray, main);
         appContainer.append(main);
         initMap2();
+          var modal = $('<div class="modal"></div>');
+        //modal.prepend($('<div class="modal-inner"></div>'));
+        main.append(modal);
 
 
     }
@@ -323,6 +354,11 @@ $(function() {
     });
     $('body').on('click', '#searchBtn', function() {
         searchPage();
+    });
+
+    $('body').on('click', '.modalButton', function() {
+        login();
+
     });
 
 
