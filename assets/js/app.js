@@ -1,3 +1,4 @@
+
 'use strict';
 $(function() {
 
@@ -25,8 +26,19 @@ $(function() {
     landingPage();
     appender(elementArray, appContainer);
 
+    // ----------------function to create modal
+    function createModal() {
+        var modal = $('<div id="id01" class="w3-modal"></div>');
+        var modalContent = $('<div class="w3-modal-content">');
+        var modalTxt = $('<p class="modalText">You Must Log In With Facebook to Continue</p>');
+        modal.prepend(modalContent);
+        modalContent.prepend(modalTxt);
+        $('#app').prepend(modal);
+    }
+
     // -------------------------------------------------function that generates the landing page
     function landingPage() {
+
 
         emptyAppContainer();
       
@@ -60,6 +72,8 @@ $(function() {
         elementArray.push(carousel);
         elementArray.push(headLogo);
         elementArray.push(main);
+
+
 
     }
 
@@ -103,6 +117,7 @@ $(function() {
             } else if (response.status === 'not_authorized') {
                 console.log('we are not connected');
             } else {
+                createModal();
                 console.log('you are not connected');
             }
 
@@ -114,7 +129,6 @@ $(function() {
     //-----------------------------------------------function that generates the create event page
 
     function createPage() {
-
 
 
         emptyAppContainer();
@@ -182,12 +196,15 @@ $(function() {
         appContainer.append(main);
         initMap();
 
+        
+
     }
 
 
 
 
     function searchPage() {
+
         emptyAppContainer();
 
         elementArray = [];
@@ -202,6 +219,9 @@ $(function() {
         appender(elementArray, main);
         appContainer.append(main);
         initMap2();
+          var modal = $('<div class="modal"></div>');
+        //modal.prepend($('<div class="modal-inner"></div>'));
+        main.append(modal);
 
 
     }
