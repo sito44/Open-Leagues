@@ -39,10 +39,14 @@ $(function() {
 
  // -----------------------------------------FB button functionality
     function checkBtnClick() {
-    if ('.uiButtonConfirm' === !clicked) {
-        $('#id01').hide();
-        } else { 
-            clicked === false
+        $('#loginbutton').click(function() {
+            hasBeenClicked = true;
+        });
+
+        if (hasBeenClicked) {
+            $('#id01').hide()
+        } else {
+            $('#id01').show()
         }
 
 
@@ -204,7 +208,7 @@ $(function() {
         appContainer.append(main);
         initMap();
 
-        createModal();
+        $('#id01').hide();
         checkBtnClick();
 
         
