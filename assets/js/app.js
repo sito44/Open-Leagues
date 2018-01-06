@@ -22,6 +22,7 @@ $(function() {
     var map2;
     var ltLgString;
     var ltLgArray;
+    var clicked = false;
 
     landingPage();
     appender(elementArray, appContainer);
@@ -35,6 +36,15 @@ $(function() {
         modalContent.prepend(modalTxt);
         $('#app').prepend(modal);
     }
+
+ // -----------------------------------------FB button functionality
+    function checkBtnClick() {
+     if ('.uiButtonConfirm' === !clicked) {
+        $(modal).hide();
+        }
+
+    }
+
 
     // -------------------------------------------------function that generates the landing page
     function landingPage() {
@@ -192,6 +202,7 @@ $(function() {
         initMap();
 
         createModal();
+        checkBtnClick();
 
         
 
