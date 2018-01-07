@@ -402,4 +402,31 @@ $(function() {
         console.log(searchMapArray[1]);
 
     });
+
+    // -------------------------------------------------- weather api calls
+
+    // let latitude,longitude 
+    
+    // function getWeather(latitude,longitude) {
+
+    //     if(latitude != '' && longitude != '') {
+
+    //     var queryURL = 'api.openweathermap.org/data/2.5/forecast?id=524901&units=imperial&APPID=eae68fa56af3e63c236a36180ed2fe9c';
+
+    //     console.log(queryURL);
+
+    //     $.ajax({
+    //         url: queryURL,
+    //         method: "GET"
+    //     }).done(function(response) {
+    //         console.log(response);
+
+    //         var results = response.data;
+
+    //         console.log(results);
+
+    //     }
+
+    // }
+
 });
