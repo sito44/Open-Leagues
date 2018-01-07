@@ -2,52 +2,37 @@
     height: 90px;
     width: 100%;
     background-color: #b1b9c6;
-    margin-bottom: 3%;
+    margin-bottom: 1%;
     opacity: 0.9;
     border: 1px solid #b1b9c6;
 }
 
 .logoDiv {
-    /*background-color: white;*/
     background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
-    /*width: 100%;*/
+}
+
+.openLogo {
+    margin-left: 1.5%;
+    opacity: 0.8;
+    max-height: 90px;
+    padding: 10px;
 }
 
 #app {
-    display: flex;
+    /*display: flex;*/
 }
 
-.footer {
-    background-color: #b1b9c6;
-    color: #464a4e;
-    height: 4%;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    margin-top: 3%;
-    /*font-family: 'Poller One', cursive;*/
-    line-height: 1.5;
-}
 
 .d-block {
     border: 4px solid #b1b9c6;
     padding: 2%;
     position: relative;
-    display: flex;
 }
 
 .item {
     display: none;
     position: relative;
     transition: (.3s ease-in-out left);
-}
-
-.openText {
-    background-color: rgba(255, 255, 255, 0.3);
-    color: black;
-    font-size: 35px;
-    font-family: 'Poller One', cursive;
 }
 
 .overlay {
@@ -62,21 +47,11 @@
     margin-bottom: 1%;
 }
 
-.btn {
-    margin: 1%;
-    margin-top: 2%;
-    border: 4px solid #b1b9c6;
-    opacity: 0.8;
-    color: #464a4e;
-    background-color: #b1b9c6;
-    line-height: 1.5;
-}
-
-.openLogo {
-    margin-left: 1.5%;
-    opacity: 0.8;
-    max-height: 90px;
-    padding: 10px;
+.openText {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: black;
+    font-size: 35px;
+    font-family: 'Poller One', cursive;
 }
 
 .openDialogue {
@@ -93,6 +68,28 @@
     width: 80%;
 }
 
+.btn {
+    margin: 1%;
+    margin-top: 2%;
+    border: 4px solid #b1b9c6;
+    opacity: 0.8;
+    color: #464a4e;
+    background-color: #b1b9c6;
+    line-height: 1.5;
+}
+
+.footer {
+    background-color: #b1b9c6;
+    color: #464a4e;
+    height: 4%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin-top: 3%;
+    line-height: 1.5;
+}
+
 .createPageStyle {
     width: 90%;
     height: 90%;
@@ -107,9 +104,6 @@ input {
 textarea {
     display: block;
 }
-
-.createEventLogo {}
-
 
 .createPageMap {
     display: flex;
@@ -181,12 +175,12 @@ textarea {
         font-size: 70px;
     }
 
-    .overlay {
+    /*.overlay {
         top: 20%;
-    }
+    }*/
 }
 
-@media screen and (width: 412px) {
+@media screen and (max-width: 767px) {
 
     .overlay {
         top: 45%;
@@ -195,8 +189,12 @@ textarea {
 
 @media screen and (min-width: 768px) {
 
+    .overlay {
+        top: 20%;
+    }  
+
     .openDialogue {
-        margin-top: 35%;
+        margin-top: 30%;
     }
 }
 
@@ -207,25 +205,21 @@ textarea {
     }
 
     .overlay {
-        top: 20%;
+        top: 10%;
     }
 
-    .textDialogue {
-        margin-top: 35%;
+    .openDialogue {
+        margin-top: 25%;
     }
 }
 
 @media screen and (min-width: 1025px) {
 
-    .header {
-        margin-bottom: 1%;
-    }
-
     .overlay {
-        top: 30%;
+      /*  top: 30%;*/
     }
 
-    .textDialogue {
-        margin-top: 25%;
+    .openDialogue {
+        margin-top: 30%;
     }
 }
