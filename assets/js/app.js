@@ -133,6 +133,7 @@ $(function() {
             console.log(response.status)
             if (response.status === 'connected') {
                 console.log('we are connected');
+                $('.w3-modal').hide();
             } else {
                 createModal(); 
             }
@@ -335,16 +336,7 @@ $(function() {
     }
 
 
-    function ltLgConverter(string) {
-        var ar1 = string.split('');
-        ar1.shift();
-        ar1.pop();
-        var t = ar1.join('');
-        ltLgArray = t.split(',');
-
-
-
-    }
+ 
 
     // ----------------------------------adds click handler onto the create event button - event delegation
 
@@ -356,10 +348,18 @@ $(function() {
         searchPage();
     });
 
+    // ----------------------------------when the retry button is clicked on the modal, another login window pops up
+
     $('body').on('click', '.modalButton', function() {
         login();
 
     });
+
+    //--------------------------------------when you click the create button
+        //-----------------------if you are not logged into facebook
+    $('body').on('click', '#createBtn', function() {
+        createModal();
+    })
 
 
     // -------------------------------------------------------firebase calls 
