@@ -1,5 +1,5 @@
 .header {
-    height: 160px;
+    height: 90px;
     width: 100%;
     background-color: #b1b9c6;
     margin-bottom: 3%;
@@ -7,6 +7,15 @@
     border: 1px solid #b1b9c6;
 }
 
+.logoDiv {
+    /*background-color: white;*/
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+    /*width: 100%;*/
+}
+
+#app {
+    display: flex;
+}
 
 .footer {
     background-color: #b1b9c6;
@@ -17,7 +26,7 @@
     right: 0;
     text-align: center;
     margin-top: 3%;
-    font-family: 'Poller One', cursive;
+    /*font-family: 'Poller One', cursive;*/
     line-height: 1.5;
 }
 
@@ -37,7 +46,7 @@
 .openText {
     background-color: rgba(255, 255, 255, 0.3);
     color: black;
-    font-size: 90px;
+    font-size: 35px;
     font-family: 'Poller One', cursive;
 }
 
@@ -45,11 +54,12 @@
     color: #fff;
     position: absolute;
     z-index: 12;
-    top: 50%;
+    top: 40%;
     left: 0;
     width: 100%;
-    height:100%;
+    height: 100%;
     text-align: center;
+    margin-bottom: 1%;
 }
 
 .btn {
@@ -57,20 +67,30 @@
     margin-top: 2%;
     border: 4px solid #b1b9c6;
     opacity: 0.8;
-    color: #464a4e
+    color: #464a4e;
     background-color: #b1b9c6;
-    font-family: 'Poller One', cursive;
     line-height: 1.5;
-
 }
 
 .openLogo {
     margin-left: 1.5%;
     opacity: 0.8;
-    max-height: 160px;
+    max-height: 90px;
     padding: 10px;
-  
-    
+}
+
+.openDialogue {
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 100%;
+    margin: auto;
+}
+
+.textDialogue {
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    margin: auto;
+    width: 80%;
 }
 
 .createPageStyle {
@@ -84,12 +104,18 @@ input {
     display: block;
 }
 
+textarea {
+    display: block;
+}
+
+.createEventLogo {}
+
 
 .createPageMap {
     display: flex;
-    position:relative;
+    position: relative;
     width: 100%;
-    height:75%;
+    height: 75%;
     border: 4px solid black;
     border-radius: 25px;
     padding: 5px;
@@ -100,7 +126,6 @@ input {
     border: 4px solid black;
     border-radius: 25px;
     padding: 20px;
-
 }
 
 #app {
@@ -124,11 +149,10 @@ input {
     width: 400px;
     height: 200px;
     padding: 2px;
-    position: absolute;
+    position: fixed;
     z-index: 1;
     background-color: darkgray;
     box-shadow: 2px 2px 30px;
-
 }
 
 .w3-modal-content {
@@ -143,12 +167,65 @@ input {
 
 .modalTxt {
     font-size: 20px;
-
 }
-
 
 .modalButton {
     width: 100px;
     background-color: #a4cdfd;
 }
 
+@media screen and (min-width: 415px) {
+
+    .openText {
+        background-color: rgba(255, 255, 255, 0.3);
+        font-size: 70px;
+    }
+
+    .overlay {
+        top: 20%;
+    }
+}
+
+@media screen and (width: 412px) {
+
+    .overlay {
+        top: 45%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+
+    .openDialogue {
+        margin-top: 35%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+
+    .openText {
+        font-size: 90px;
+    }
+
+    .overlay {
+        top: 20%;
+    }
+
+    .textDialogue {
+        margin-top: 35%;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+
+    .header {
+        margin-bottom: 1%;
+    }
+
+    .overlay {
+        top: 30%;
+    }
+
+    .textDialogue {
+        margin-top: 25%;
+    }
+}

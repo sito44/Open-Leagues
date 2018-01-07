@@ -1,4 +1,3 @@
-
 'use strict';
 $(function() {
 
@@ -60,7 +59,7 @@ $(function() {
 
 
         emptyAppContainer();
-      
+
         var carousel =
 
             '<div id="carouselExampleSlidesOnly" class="carousel slide full-screen" data-ride="carousel">' +
@@ -78,14 +77,18 @@ $(function() {
             '</div>';
 
         var openText = $('<div class="openText">');
-        var openTextText = $('<p>OPEN LEAGUES</p>') 
-        openText.prepend(openTextText);           
+        var openTextText = $('<p>OPEN LEAGUES</p>');
+        var openDialogue = $('<div class="openDialogue">');
+        var textDialogue = $('<p class="textDialogue">Welcome to Open Leagues! Click on the Search Button to find local sports leagues and events. Click on the Create Event button to create your own events and dream team.</p>');
         var main = $('<main id="main" class="mainStyle overlay">');
         var searchBtn = $('<button id="searchBtn" class="btnStyle btn btn-lg active">');
         var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active">');
         searchBtn.text('Search');
         createBtn.text('Create Event');
+        openText.prepend(openTextText); 
+        openDialogue.prepend(textDialogue);          
         main.append(openText);
+        main.append(openDialogue);
         main.append(searchBtn);
         main.append(createBtn);
         elementArray.push(carousel);
@@ -132,8 +135,8 @@ $(function() {
         FB.login(function(response) {
             console.log(response.status)
             if (response.status === 'connected') {
-                console.log('we are connected');
                 $('.w3-modal').hide();
+                console.log('we are connected');
             } else {
                 createModal(); 
             }
@@ -160,31 +163,31 @@ $(function() {
         var sportsSelector = $('<select name="sports" id="selectedSport" class="sportChoice">');
         var sportsOptions =
 
-            '<option value="soccer">soccer</option>' +
-            '<option value="football">football</option>' +
-            '<option value="volleyball">volleyball</option>' +
-            '<option value="hockey">hockey</option>' +
-            '<option value="baseball">baseball</option>' +
-            '<option value="basketball">basketball</option>' +
-            '<option value="yoga">yoga</option>' +
-            '<option value="hiking">hiking</option>';
+            '<option value="soccer">Soccer</option>' +
+            '<option value="football">Football</option>' +
+            '<option value="volleyball">Volleyball</option>' +
+            '<option value="hockey">Hockey</option>' +
+            '<option value="baseball">Baseball</option>' +
+            '<option value="basketball">Basketball</option>' +
+            '<option value="yoga">Yoga</option>' +
+            '<option value="hiking">Hiking</option>';
 
         var labelSportChoice = $('<label for="sportsChoice">');
         var labelStartTime = $('<label for="startTime">');
         var gameStartTime = $('<input type="text" name="startTime" id="startTime">');
         var labelDurationTime = $('<label for="DurationTime">');
         var gameDurationTime = $('<input type="text" name="DurationTime" id="durationTime">');
-        var labelTeamSize = $('<label for="teamSize">');
-        var teamSize = $('<input type="text" name="teamSize" id="teamSize">');
-        var labelBenchSeats = $('<label for="benchSeats">');
-        var benchSeats = $('<input type="text" name="benchSeats" id="benchSeats">');
+        var labelMaxPeople = $('<label for="maxPeople">');
+        var maxPeople = $('<input type="text" name="maxPeople" id="maxPeople">');
+        var labelRules = $('<label for="rules">');
+        var rules = $('<textarea name="rules" id="rules" rows="10" cols="50">');
         var eventSubmit = $('<button id="eventSubmit" class="eSubmit">');
         sportsSelector.html(sportsOptions);
 
         labelStartTime.text('Start Time: ');
         labelDurationTime.text('Duration: ');
-        labelTeamSize.text('Team Size: ');
-        labelBenchSeats.text('Bench Seats: ');
+        labelMaxPeople.text('Max Number of People: ');
+        labelRules.text('Rules: ');
         eventSubmit.text('Create Event');
 
         childElements.push(
@@ -195,10 +198,10 @@ $(function() {
             gameStartTime,
             labelDurationTime,
             gameDurationTime,
-            labelTeamSize,
-            teamSize,
-            labelBenchSeats,
-            benchSeats,
+            labelMaxPeople,
+            maxPeople,
+            labelRules,
+            rules,
             eventSubmit);
 
         appender(childElements, form);
@@ -285,7 +288,7 @@ $(function() {
     // -----------------------------------------initialize google maps function on search page
     function initMap2() {
 
-        let marker;
+        
 
         map2 = new google.maps.Map(document.getElementById('searchMap'), {
             center: { lat: 32.852, lng: -117.185 },
@@ -299,33 +302,33 @@ $(function() {
                 var selectedSport = eventData[m].selectedSport;
                 var startTime = eventData[m].startTime;
                 var duration = eventData[m].duration;
-                var teamSize = eventData[m].teamSize;
+                var maxPeople = eventData[m].maxPeople;
                 var benchSeats = eventData[m].benchSeats;
                 var contentString =
                     '<div id="eventInfo">' +
                     '<h2>Open ' + selectedSport + ' League</h2>' +
                     '<p>Start Time: ' + startTime + '</p>' +
                     '<p>Duration: ' + duration + '</p>' +
-                    '<p>Team Size: ' + teamSize + '</p>' +
+                    '<p>Team Size: ' + maxPeople + '</p>' +
                     '<p>Bench Seats: ' + benchSeats + '</p>';
 
-                var infowindow = new google.maps.InfoWindow({
+                let infowindow = new google.maps.InfoWindow({
                     content: contentString
                 });
-                console.log(lt);
-                marker = new google.maps.Marker({
+
+                
+                let marker = new google.maps.Marker({
                     map: map2,
                     animation: google.maps.Animation.DROP,
                     position: { lat: lt, lng: lg }
                 });
-                /*google.maps.event.addListener(marker, 'click', function() {
-                    // do something with this marker ...
-                    $(this).infowindow.open(map2, marker);
-                });*/
+
+                marker.info = infowindow;
+              
+                google.maps.event.addListener(marker, 'click', function() {
+                    marker.info.open(map2, marker);
+                });
             }
-            marker.addListener('click', function() {
-                infowindow.open(map2, marker);
-            });
 
 
         }
@@ -336,7 +339,16 @@ $(function() {
     }
 
 
- 
+    function ltLgConverter(string) {
+        var ar1 = string.split('');
+        ar1.shift();
+        ar1.pop();
+        var t = ar1.join('');
+        ltLgArray = t.split(',');
+
+
+
+    }
 
     // ----------------------------------adds click handler onto the create event button - event delegation
 
@@ -348,18 +360,14 @@ $(function() {
         searchPage();
     });
 
-    // ----------------------------------when the retry button is clicked on the modal, another login window pops up
-
     $('body').on('click', '.modalButton', function() {
+        login();
+    });
+
+    $('body').on('click', '#eventSubmit', function() {
         login();
 
     });
-
-    //--------------------------------------when you click the create button
-        //-----------------------if you are not logged into facebook
-    $('body').on('click', '#createBtn', function() {
-        createModal();
-    })
 
 
     // -------------------------------------------------------firebase calls 
@@ -370,8 +378,8 @@ $(function() {
         var sportInput = $("#selectedSport").val().trim();
         var startTimeInput = $("#startTime").val().trim();
         var durationInput = $("#durationTime").val().trim();
-        var teamSizeInput = $("#teamSize").val().trim();
-        var benchSeatsInput = $("#benchSeats").val().trim();
+        var maxPeopleInput = $("#maxPeople").val().trim();
+        var rules = $('#rules').val().trim();
 
 
         var currentUser = {
@@ -380,15 +388,16 @@ $(function() {
             selectedSport: sportInput,
             startTime: startTimeInput,
             duration: durationInput,
-            teamSize: teamSizeInput,
-            benchSeats: benchSeatsInput
+            maxPeople: maxPeopleInput,
+            rules: rules
+            
         };
         OLdatabase.ref('userEvents/').push(currentUser);
         $('#selectedSport').val('');
         $('#startTime').val('');
         $('#durationTime').val('');
-        $('#teamSize').val('');
-        $('#benchSeats').val('');
+        $('#maxPeople').val('');
+        $('#rules').val('');
     });
 
     OLdatabase.ref('userEvents/').on("child_added", function(snapshot) {
