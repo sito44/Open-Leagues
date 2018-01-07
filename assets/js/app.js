@@ -1,4 +1,3 @@
-
 'use strict';
 $(function() {
 
@@ -39,7 +38,7 @@ $(function() {
         $('#app').prepend(modal);
     }
 
- // -----------------------------------------FB button functionality
+    // -----------------------------------------FB button functionality
     function checkBtnClick() {
         $('#loginbutton').click(function() {
             hasBeenClicked = true;
@@ -86,8 +85,8 @@ $(function() {
         var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active">');
         searchBtn.text('Search');
         createBtn.text('Create Event');
-        openText.prepend(openTextText); 
-        openDialogue.prepend(textDialogue);          
+        openText.prepend(openTextText);
+        openDialogue.prepend(textDialogue);
         main.append(openText);
         main.append(openDialogue);
         main.append(searchBtn);
@@ -134,11 +133,11 @@ $(function() {
 
     function login() {
         FB.login(function(response) {
-            console.log(response.status)
+            console.log(response.status);
             if (response.status === 'connected') {
                 console.log('we are connected');
             } else {
-                createModal(); 
+                createModal();
             }
 
         });
@@ -163,14 +162,14 @@ $(function() {
         var sportsSelector = $('<select name="sports" id="selectedSport" class="sportChoice">');
         var sportsOptions =
 
-            '<option value="soccer">Soccer</option>' +
-            '<option value="football">Football</option>' +
-            '<option value="volleyball">Volleyball</option>' +
-            '<option value="hockey">Hockey</option>' +
-            '<option value="baseball">Baseball</option>' +
-            '<option value="basketball">Basketball</option>' +
-            '<option value="yoga">Yoga</option>' +
-            '<option value="hiking">Hiking</option>';
+            '<option value="Soccer">Soccer</option>' +
+            '<option value="Football">Football</option>' +
+            '<option value="Volleyball">Volleyball</option>' +
+            '<option value="Hockey">Hockey</option>' +
+            '<option value="Baseball">Baseball</option>' +
+            '<option value="Basketball">Basketball</option>' +
+            '<option value="Golf">Golf</option>' +
+            '<option value="Pool">Pool</option>';
 
         var labelSportChoice = $('<label for="sportsChoice">');
         var labelStartTime = $('<label for="startTime">');
@@ -215,7 +214,7 @@ $(function() {
         //createModal();
         // checkBtnClick();
 
-        
+
 
     }
 
@@ -233,10 +232,10 @@ $(function() {
         elementArray.push(mapContainer);
         appender(elementArray, main);
         appContainer.append(main);
-        initMap2();
-          var modal = $('<div class="modal"></div>');
+        var modal = $('<div class="modal"></div>');
         //modal.prepend($('<div class="modal-inner"></div>'));
         main.append(modal);
+        initMap2();
 
 
     }
@@ -288,45 +287,99 @@ $(function() {
     // -----------------------------------------initialize google maps function on search page
     function initMap2() {
 
-        
+
 
         map2 = new google.maps.Map(document.getElementById('searchMap'), {
             center: { lat: 32.852, lng: -117.185 },
             zoom: 10
         });
 
+
         function placeMarkers(eventData) {
             for (let m = 0; m < eventData.length; m++) {
-                var lt = parseFloat(eventData[m].lat);
-                var lg = parseFloat(eventData[m].lng);
-                var selectedSport = eventData[m].selectedSport;
-                var startTime = eventData[m].startTime;
-                var duration = eventData[m].duration;
-                var maxPeople = eventData[m].maxPeople;
-                var benchSeats = eventData[m].benchSeats;
-                var contentString =
+                let lt = parseFloat(eventData[m].lat);
+                let lg = parseFloat(eventData[m].lng);
+                let address = eventData[m].address;
+                let selectedSport = eventData[m].selectedSport;
+                let startTime = eventData[m].startTime;
+                let duration = eventData[m].duration;
+                let maxPeople = eventData[m].maxPeople;
+                let benchSeats = eventData[m].benchSeats;
+                let rules = eventData[m].rules;
+                let iconBtn;
+                let contentString =
                     '<div id="eventInfo">' +
                     '<h2>Open ' + selectedSport + ' League</h2>' +
+                    '<h3>Address: ' + address + '</h3>' +
                     '<p>Start Time: ' + startTime + '</p>' +
                     '<p>Duration: ' + duration + '</p>' +
-                    '<p>Team Size: ' + maxPeople + '</p>' +
-                    '<p>Bench Seats: ' + benchSeats + '</p>';
+                    '<p>Max Number of People: ' + maxPeople + '</p>' +
+                    '<p>Bench Seats: ' + benchSeats + '</p>' +
+                    '<p>Rules: ' + rules + '</p>';
 
+                   
+                switch (selectedSport) {
+                    case "Soccer":
+                        iconBtn = './assets/images/soccerIcon.png';
+                        break;
+                    case "Football":
+                        iconBtn = './assets/images/footBallIcon.png';
+                        break;
+                    case "Volleyball":
+                        iconBtn = './assets/images/volleyBallIcon.png';
+                        break;
+                    case "Hockey":
+                        iconBtn = './assets/images/hockeyIcon.png';
+                        break;
+                    case "Baseball":
+                        iconBtn = './assets/images/baseballIcon.png';
+                        break;
+                    case "BasketBall":
+                        iconBtn = './assets/images/basketballIcon.png';
+                        break;
+                    case "Golf":
+                        iconBtn = './assets/images/golfIcon.png';
+                        break;
+                    case "Pool":
+                        iconBtn = './assets/images/poolIcon.png';
+                        break;
+
+                }
+
+                console.log(iconBtn);
+                let image = {
+                    url: iconBtn,
+                    // This marker is 20 pixels wide by 32 pixels high.
+                    size: new google.maps.Size(40, 40),
+                    // The origin for this image is (0, 0).
+                    origin: new google.maps.Point(0, 0),
+                    // The anchor for this image is the base of the flagpole at (0, 32).
+                    anchor: new google.maps.Point(0, 32)
+                };
                 let infowindow = new google.maps.InfoWindow({
                     content: contentString
                 });
 
-                
+
                 let marker = new google.maps.Marker({
                     map: map2,
                     animation: google.maps.Animation.DROP,
+                    icon: image,
                     position: { lat: lt, lng: lg }
                 });
 
                 marker.info = infowindow;
-              
+
+                function toggleBounce() {
+                    if (marker.getAnimation() !== null) {
+                        marker.setAnimation(null);
+                    } else {
+                        marker.setAnimation(google.maps.Animation.BOUNCE);
+                    }
+                }
                 google.maps.event.addListener(marker, 'click', function() {
-                	marker.info.open(map2, marker);
+                    marker.info.open(map2, marker);
+                    toggleBounce();
                 });
             }
 
@@ -337,7 +390,7 @@ $(function() {
         placeMarkers(searchMapArray);
 
     }
-
+console.log(searchMapArray);
 
     function ltLgConverter(string) {
         var ar1 = string.split('');
@@ -368,27 +421,46 @@ $(function() {
 
     // -------------------------------------------------------firebase calls 
 
+
     $('body').on('click', '#eventSubmit', function(event) {
         event.preventDefault();
         ltLgConverter(ltLgString);
+        var geocoder = new google.maps.Geocoder;
+        var latLng = { lat: parseFloat(ltLgArray[0]), lng: parseFloat(ltLgArray[1]) };
         var sportInput = $("#selectedSport").val().trim();
         var startTimeInput = $("#startTime").val().trim();
         var durationInput = $("#durationTime").val().trim();
         var maxPeopleInput = $("#maxPeople").val().trim();
         var rules = $('#rules').val().trim();
 
+        geocoder.geocode({ 'location': latLng }, function(results, status) {
+            console.log(results);
+            if (status === 'OK') {
+                if (results[0]) {
+                    var x = results[0].formatted_address;
+                    var currentUser = {
+                        lat: ltLgArray[0],
+                        lng: ltLgArray[1],
+                        selectedSport: sportInput,
+                        address: x,
+                        startTime: startTimeInput,
+                        duration: durationInput,
+                        maxPeople: maxPeopleInput,
+                        benchSeats: 0,
+                        rules: rules
 
-        var currentUser = {
-            lat: ltLgArray[0],
-            lng: ltLgArray[1],
-            selectedSport: sportInput,
-            startTime: startTimeInput,
-            duration: durationInput,
-            maxPeople: maxPeopleInput,
-            rules: rules
-            
-        };
-        OLdatabase.ref('userEvents/').push(currentUser);
+                    };
+                    OLdatabase.ref('userEvents/').push(currentUser);
+                    console.log(x);
+                } else {
+                    window.alert('No results found');
+                }
+            } else {
+                window.alert('Geocoder failed due to: ' + status);
+            }
+
+        });
+
         $('#selectedSport').val('');
         $('#startTime').val('');
         $('#durationTime').val('');
@@ -399,7 +471,6 @@ $(function() {
     OLdatabase.ref('userEvents/').on("child_added", function(snapshot) {
         var userEntry = snapshot.val();
         searchMapArray.push(userEntry);
-        console.log(searchMapArray[1]);
 
     });
 });
