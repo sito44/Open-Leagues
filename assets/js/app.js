@@ -94,11 +94,7 @@ $(function() {
         elementArray.push(carousel);
         elementArray.push(main);
 
-
-
     }
-
-
 
     //------------------------------------------------------FaceBook API Initialization
     window.fbAsyncInit = function() {
@@ -145,7 +141,6 @@ $(function() {
 
     }
 
-
     //-----------------------------------------------function that generates the create event page
 
     function createPage() {
@@ -158,6 +153,9 @@ $(function() {
 
         var main = $('<main class="createPageStyle">');
         var mapContainer = $('<div id="map" class="createPageMap">');
+        var weatherDiv = $('<div class="divForWeather" id="weatherBox">');
+        /*var weatherTable = $('<table class="tableForWeather table">');*/
+        weatherDiv.append(weatherTable);
         var form = $('<form class="eventForm">');
         var address = $('<h4>');
         var sportsSelector = $('<select name="sports" id="selectedSport" class="sportChoice">');
@@ -207,6 +205,7 @@ $(function() {
 
         appender(childElements, form);
         elementArray.push(mapContainer);
+        elementArray.push(weatherDiv);
         elementArray.push(form);
         appender(elementArray, main);
 
@@ -216,12 +215,7 @@ $(function() {
         //createModal();
         // checkBtnClick();
 
-
-
     }
-
-
-
 
     function searchPage() {
 
@@ -231,7 +225,9 @@ $(function() {
 
         var main = $('<main class="createPageStyle">');
         var mapContainer = $('<div id="searchMap" class="createPageMap">');
+        weatherDiv.append(weatherTable);
         elementArray.push(mapContainer);
+        elementArray.push(weatherDiv);
         appender(elementArray, main);
         appContainer.append(main);
         var modal = $('<div class="modal"></div>');
@@ -281,6 +277,8 @@ $(function() {
             var ltLg = event.latLng;
             placeMarker(ltLg);
             ltLgString = marker.getPosition().toString();
+            ltLgConverter(ltLgString);
+            getWeather(parseFloat(ltLgArray[0]),parseFloat(ltLgArray[1]));
 
 
         });
@@ -387,14 +385,12 @@ $(function() {
                 });
             }
 
-
         }
 
-
         placeMarkers(searchMapArray);
-
     }
-console.log(searchMapArray);
+
+    console.log(searchMapArray);
 
     function ltLgConverter(string) {
         var ar1 = string.split('');
@@ -402,8 +398,6 @@ console.log(searchMapArray);
         ar1.pop();
         var t = ar1.join('');
         ltLgArray = t.split(',');
-
-
 
     }
 
@@ -500,13 +494,22 @@ console.log(searchMapArray);
             method: "GET"
         }).done(function(response) {
             console.log(response);
-
             var results = response;
 
             console.log(results);
 
             let city = results.city.name;
-             console.log(city);
+            console.log(city);
+            let weatherDayOne = results.list[3].dt_txt;
+            let weatherDayTwo = results.list[11].dt_txt;
+            let weatherDayThree = results.list[19].dt_txt;
+            let weatherDayFour = results.list[27].dt_txt;
+            let weatherDayFive = results.list[35].dt_txt;
+            console.log('Day One: ' + weatherDayOne);
+            console.log('Day Two: ' + weatherDayTwo);
+            console.log('Day Three: ' + weatherDayThree);
+            console.log('Day Four: ' + weatherDayFour);
+            console.log('Day Five: ' + weatherDayFive);
             let temperatureDayOne = results.list[3].main.temp;
             let temperatureDayTwo = results.list[11].main.temp;
             let temperatureDayThree = results.list[19].main.temp;
@@ -538,11 +541,19 @@ console.log(searchMapArray);
             console.log('Wind Day Four: '+ windDayFour);
             console.log('Wind Day Five: '+ windDayFive);
 
+            /*$('#weatherBox').html(
+
+                '<div'
+                );*/
+
+            /*var weatherTable = $('<table class="tableForWeather table">');*/
+            
+
         });
 
     }
 }
 
-getWeather(32.852,-117.185);
+/*getWeather(parseFloat(ltLgArray[0]),parseFloat(ltLgArray[1]));*/
 
 });
