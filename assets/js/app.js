@@ -172,6 +172,7 @@ $(function() {
             '<option value="Golf">Golf</option>' +
             '<option value="Pool">Pool</option>'
 
+
         var labelSportChoice = $('<label for="sportsChoice">');
         var labelStartTime = $('<label for="startTime">');
         var gameStartTime = $('<input type="text" name="startTime" id="startTime">');
@@ -483,28 +484,65 @@ console.log(searchMapArray);
 
     // -------------------------------------------------- weather api calls
 
-    // let latitude,longitude 
+    let latitude,longitude; 
     
-    // function getWeather(latitude,longitude) {
+    function getWeather(latitude,longitude) {
 
-    //     if(latitude != '' && longitude != '') {
+        if(latitude != '' && longitude != '') {
 
-    //     var queryURL = 'api.openweathermap.org/data/2.5/forecast?id=524901&units=imperial&APPID=eae68fa56af3e63c236a36180ed2fe9c';
+        var queryURL = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude + 
+            '&units=imperial&APPID=eae68fa56af3e63c236a36180ed2fe9c';
 
-    //     console.log(queryURL);
+        console.log(queryURL);
 
-    //     $.ajax({
-    //         url: queryURL,
-    //         method: "GET"
-    //     }).done(function(response) {
-    //         console.log(response);
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).done(function(response) {
+            console.log(response);
 
-    //         var results = response.data;
+            var results = response;
 
-    //         console.log(results);
+            console.log(results);
 
-    //     }
+            let city = results.city.name;
+             console.log(city);
+            let temperatureDayOne = results.list[3].main.temp;
+            let temperatureDayTwo = results.list[11].main.temp;
+            let temperatureDayThree = results.list[19].main.temp;
+            let temperatureDayFour = results.list[27].main.temp;
+            let temperatureDayFive = results.list[35].main.temp;
+            console.log('Temp Day One: ' + temperatureDayOne);
+            console.log('Temp Day Two: ' + temperatureDayTwo);
+            console.log('Temp Day Three: ' + temperatureDayThree);
+            console.log('Temp Day Four: ' + temperatureDayFour);
+            console.log('Temp Day Five: ' + temperatureDayFive);
+            let weatherDescriptionDayOne = response.list[3].weather[0].description;
+            let weatherDescriptionDayTwo = response.list[11].weather[0].description;
+            let weatherDescriptionDayThree = response.list[19].weather[0].description;
+            let weatherDescriptionDayFour = response.list[27].weather[0].description;
+            let weatherDescriptionDayFive = response.list[35].weather[0].description;
+            console.log('Weather Description Day One: '+ weatherDescriptionDayOne);
+            console.log('Weather Description Day Two: '+ weatherDescriptionDayTwo);
+            console.log('Weather Description Day Three: '+ weatherDescriptionDayThree);
+            console.log('Weather Description Day Four: '+ weatherDescriptionDayFour);
+            console.log('Weather Description Day Five: '+ weatherDescriptionDayFive);
+            let windDayOne = response.list[3].wind.speed;
+            let windDayTwo = response.list[11].wind.speed;
+            let windDayThree = response.list[19].wind.speed;
+            let windDayFour = response.list[27].wind.speed;
+            let windDayFive = response.list[35].wind.speed;
+            console.log('Wind Day One: '+ windDayOne);
+            console.log('Wind Day Two: '+ windDayTwo);
+            console.log('Wind Day Three: '+ windDayThree);
+            console.log('Wind Day Four: '+ windDayFour);
+            console.log('Wind Day Five: '+ windDayFive);
 
-    // }
+        });
+
+    }
+}
+
+getWeather(32.852,-117.185);
 
 });
