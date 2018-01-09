@@ -114,7 +114,15 @@ textarea {
     border-radius: 25px;
     padding: 5px;
 }
-
+.divForWeather {
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+}
+.wB {
+    flex:2;
+    border-right: 1px solid black;
+}
 .eventForm {
     margin-top: 10px;
     border: 4px solid black;
@@ -138,15 +146,16 @@ textarea {
 }
 
 .w3-modal {
-    top: 30%;
-    left: 35%;
-    width: 400px;
-    height: 200px;
+    /*top: 30%;*/
+    left: 5%;
+    width: 90%;
+    margin:auto;
+    height: 100%;
     padding: 2px;
     position: fixed;
     z-index: 1;
     background-color: darkgray;
-    box-shadow: 2px 2px 30px;
+    box-shadow: 2px 2px 35px black;
 }
 
 .w3-modal-content {
@@ -156,7 +165,7 @@ textarea {
     height: 100%;
     background-color: white;
     text-align: center;
-    padding: 60px;
+    padding:20% 15% 15% 15%;
 }
 
 .modalTxt {
