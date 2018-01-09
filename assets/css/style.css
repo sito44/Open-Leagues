@@ -1,21 +1,15 @@
 .header {
     height: 90px;
     width: 100%;
-    background-color: #b1b9c6;
     margin-bottom: 1%;
     opacity: 0.9;
-    border: 1px solid #b1b9c6;
-}
-
-.logoDiv {
-    background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+    background: linear-gradient(45deg, white 55%, #b1b9c6);
 }
 
 .openLogo {
     margin-left: 1.5%;
     opacity: 0.8;
     max-height: 90px;
-    padding: 10px;
 }
 
 #app {
@@ -38,13 +32,11 @@
 .overlay {
     color: #fff;
     position: absolute;
-    z-index: 12;
-    top: 40%;
-    left: 0;
     width: 100%;
-    height: 100%;
     text-align: center;
     margin-bottom: 1%;
+    display: flex;
+    flex-direction: column;
 }
 
 .openText {
@@ -52,12 +44,16 @@
     color: black;
     font-size: 35px;
     font-family: 'Poller One', cursive;
+    display: flex;
+    flex-direction: column;
 }
 
 .openDialogue {
     background-color: rgba(255, 255, 255, 0.3);
-    width: 100%;
+    border-radius: 10px;
     margin: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .textDialogue {
@@ -68,6 +64,12 @@
     width: 80%;
 }
 
+.divForButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 .btn {
     margin: 1%;
     margin-top: 2%;
@@ -75,7 +77,9 @@
     opacity: 0.8;
     color: #464a4e;
     background-color: #b1b9c6;
-    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    max-width: 40%;
 }
 
 .footer {
@@ -119,10 +123,12 @@ textarea {
     flex-direction:row;
     flex-wrap: wrap;
 }
+
 .wB {
     flex:2;
     border-right: 1px solid black;
 }
+
 .eventForm {
     margin-top: 10px;
     border: 4px solid black;
@@ -146,7 +152,6 @@ textarea {
 }
 
 .w3-modal {
-    /*top: 30%;*/
     left: 5%;
     width: 90%;
     margin:auto;
@@ -183,28 +188,6 @@ textarea {
         background-color: rgba(255, 255, 255, 0.3);
         font-size: 70px;
     }
-
-    /*.overlay {
-        top: 20%;
-    }*/
-}
-
-@media screen and (max-width: 767px) {
-
-    .overlay {
-        top: 45%;
-    }
-}
-
-@media screen and (min-width: 768px) {
-
-    .overlay {
-        top: 20%;
-    }  
-
-    .openDialogue {
-        margin-top: 30%;
-    }
 }
 
 @media screen and (min-width: 1024px) {
@@ -212,23 +195,27 @@ textarea {
     .openText {
         font-size: 90px;
     }
-
-    .overlay {
-        top: 10%;
-    }
-
-    .openDialogue {
-        margin-top: 25%;
-    }
 }
 
 @media screen and (min-width: 1025px) {
 
-    .overlay {
-      /*  top: 30%;*/
+    .mainDialogue {
+        border-radius: 10px;
     }
 
     .openDialogue {
-        margin-top: 30%;
+        width: 50%;
+    }
+
+    .textDialogue {
+        padding: 4%;
+    }
+        
+    .overlay {
+        top: 30%;
+    }
+
+    .openDialogue {
+        margin-top: 8%;
     }
 }
