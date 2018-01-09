@@ -85,21 +85,6 @@ $(function() {
         $('#app').prepend(modal);
     }
 
-    // -----------------------------------------FB button functionality
-    function checkBtnClick() {
-        $('#loginbutton').click(function() {
-            hasBeenClicked = true;
-        });
-
-        if (hasBeenClicked) {
-            $('#id01').hide();
-        } else {
-            $('#id01').show();
-        }
-
-
-    }
-
     // -----------------------------------------function that is used to append the elements
     function appender(elements, container) {
 
@@ -199,7 +184,6 @@ $(function() {
         var weatherInfoContainer = $('<div id="weatherInfo" class="divForWeather">');
         weatherDiv.append(weatherHeader);
         weatherDiv.append(weatherInfoContainer);
-
         var form = $('<form class="eventForm">');
         var address = $('<h4>');
         var sportsSelector = $('<select name="sports" id="selectedSport" class="sportChoice">');
@@ -216,18 +200,27 @@ $(function() {
 
 
         var labelSportChoice = $('<label for="sportsChoice">');
+        var labelDate = $('<label for="date">');
+        var date = $('<input type="text" name="date" id="date" placeholder="mm/dd/2018">');
+        var dateError = $('<div id="dateError" class="errorTxt">');
         var labelStartTime = $('<label for="startTime">');
-        var gameStartTime = $('<input type="text" name="startTime" id="startTime">');
+        var gameStartTime = $('<input type="text" name="startTime" id="startTime" placeholder="hh:mmam/pm">');
+        var startTimeError = $('<div id="startTimeError" class="errorTxt">');
         var labelDurationTime = $('<label for="DurationTime">');
-        var gameDurationTime = $('<input type="text" name="DurationTime" id="durationTime">');
+        var gameDurationTime = $('<input type="text" name="DurationTime" id="durationTime" placeholder="Hours (1-4)">');
+        var durationError = $('<div id="durationError" class="errorTxt">');
         var labelMaxPeople = $('<label for="maxPeople">');
-        var maxPeople = $('<input type="text" name="maxPeople" id="maxPeople">');
+        var maxPeople = $('<input type="text" name="maxPeople" id="maxPeople" placeholder="4-50">');
+        var maxPeopleError = $('<div id="maxPeopleError" class="errorTxt">');
         var labelRules = $('<label for="rules">');
-        var rules = $('<textarea name="rules" id="rules" rows="10" cols="50">');
+        var rules = $('<textarea name="rules" id="rules" placeholder="100 word minimum" rows="10" cols="50">')
+        var rulesError = $('<div id="rulesError" class="errorTxt">');
         var eventSubmit = $('<button id="eventSubmit" class="eSubmit">');
         sportsSelector.html(sportsOptions);
 
         weatherHeader.text('Selected Area Five Day Weather Forcast');
+        labelDate.text('Date of Event');
+        labelSportChoice.text('Selected Sport: ');
         labelStartTime.text('Start Time: ');
         labelDurationTime.text('Duration: ');
         labelMaxPeople.text('Max Number of People: ');
@@ -237,15 +230,23 @@ $(function() {
         childElements.push(
 
             address,
+            labelDate,
+            date,
+            dateError,
+            labelSportChoice,
             sportsSelector,
             labelStartTime,
             gameStartTime,
+            startTimeError,
             labelDurationTime,
             gameDurationTime,
+            durationError,
             labelMaxPeople,
             maxPeople,
+            maxPeopleError,
             labelRules,
             rules,
+            rulesError,
             eventSubmit);
 
         appender(childElements, form);
@@ -261,26 +262,79 @@ $(function() {
         // checkBtnClick();
 
     }
+
+    // ------------------------------------------Function for counting characters in text area
+
+
     // -----------------------------------------Form Validation
 
     function validateForm() {
-        var startTimeInput = $('#startTime').val();
-        var durationInput = $('#durationTime').val();
-        var maxPeopleInput = $('#maxPeople').val();
+        var dateInput = $("#date").val().trim();
+        var sportInput = $("#selectedSport").val().trim();
+        var startTimeInput = $('#startTime').val().trim();
+        var durationInput = $('#durationTime').val().trim();
+        var maxPeopleInput = $('#maxPeople').val().trim();
         var rulesInput = $('#rules').val();
-
+        var dateRegex = /^(0[1-9]{1}|[12]{1}[0-9]{1}|3[01]{1}).{1}(0[1-9]{1}|1[0-2]{1}).{1}([12]{1}[0-9]{3})$/;
+        var dateResult = dateRegex.test(dateInput);
         var startTimeRegX = /^(0?[1-9]|1[012]):[0-5][0-9]([AaPp][Mm])$/i;
-
         var startTimeResult = startTimeRegX.test(startTimeInput);
+        var durationRegX = /^([1-4])$/;
+        var durationResult = durationRegX.test(durationInput);
+        var maxNumRegex = /^(5[0-0]|[1-4][0-9]|[3-9])$/
+        var maxNumResult = maxNumRegex.test(maxPeopleInput);
 
-        if (startTimeResult === true) {
-            alert('valid');
+       
+        // --------------------------------------------date validation
+
+        if (dateResult === false) {
+            $('#dateError').text('Use a valid format mm/dd/2018');
         } else {
-            alert('invalid');
+            $('#dateError').empty();
+
+
         }
-        /*var durationRegX =;
-        var maxPeopleRegX =;
-        var rulesRegX =;*/
+
+        //----------------------------------------start time validation
+
+        if (startTimeResult === false) {
+            $('#startTimeError').text('Use a valid format HH:mmam/pm');
+           
+        } else {
+            $('#startTimeError').empty();
+        }
+
+        //-----------------------------------------duration validation
+        
+        if (durationResult === false) {
+            $('#durationError').text('Enter a number between 1-4');
+            
+        } else {
+            $('#durationError').empty();
+        }
+
+        //-------------------------------------------max number validation
+         
+         if (maxNumResult === false) {
+             $('#maxPeopleError').text('Enter a number between 4-50');
+         } else {
+            $('#maxPeopleError').empty();
+         }
+
+        // ---------------------------------------------rules validation
+
+         if (rulesInput.length < 100) {
+            $('#rulesError').text('Enter at Least 100 characters')
+         } else {
+            $('#rulesError').empty();
+         }
+
+         if (dateResult === true && startTimeResult === true && durationResult === true && maxNumResult === true && rulesInput.length > 100) {
+            console.log('working!')
+            firebaseDataInput(dateInput, selectedSport, startTimeInput, durationInput, maxPeopleInput, rulesInput);
+
+         }
+
 
 
     }
@@ -442,23 +496,24 @@ $(function() {
 
     $('body').on('click', '#eventSubmit', function() {
         /*login();*/
+        event.preventDefault();
         validateForm();
+        /*firebaseDataInput();*/
     });
 
 
     // -------------------------------------------------------firebase calls 
 
 
-    $('body').on('click', '#eventSubmit', function(event) {
-        event.preventDefault();
+    function firebaseDataInput(date, selectedSport, startTime, durationTime, maxPeople, rules) {
         ltLgConverter(ltLgString);
         var geocoder = new google.maps.Geocoder;
         var latLng = { lat: parseFloat(ltLgArray[0]), lng: parseFloat(ltLgArray[1]) };
-        var sportInput = $("#selectedSport").val().trim();
+        /*var sportInput = $("#selectedSport").val().trim();
         var startTimeInput = $("#startTime").val().trim();
         var durationInput = $("#durationTime").val().trim();
         var maxPeopleInput = $("#maxPeople").val().trim();
-        var rules = $('#rules').val().trim();
+        var rules = $('#rules').val().trim();*/
 
         geocoder.geocode({ 'location': latLng }, function(results, status) {
             console.log(results);
@@ -468,12 +523,12 @@ $(function() {
                     var currentUser = {
                         lat: ltLgArray[0],
                         lng: ltLgArray[1],
-                        selectedSport: sportInput,
+                        date: date,
+                        selectedSport: selectedSport,
                         address: x,
-                        startTime: startTimeInput,
-                        duration: durationInput,
-                        maxPeople: maxPeopleInput,
-                        benchSeats: 0,
+                        startTime: startTime,
+                        duration: durationTime,
+                        maxPeople: maxPeople,
                         rules: rules
 
                     };
@@ -489,7 +544,7 @@ $(function() {
         });
 
         
-    });
+    }
 
     OLdatabase.ref('userEvents/').on("child_added", function(snapshot) {
         var userEntry = snapshot.val();
