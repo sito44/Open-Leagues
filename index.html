@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <!-- link to css -->
     <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- link to google font -->
+    <link href="https://fonts.googleapis.com/css?family=Poller+One" rel="stylesheet">
     <!-- link to firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
     <!-- link to jquery -->
@@ -18,27 +20,38 @@
     <script src="./assets/js/app.js"></script>
 </head>
 
+
 <body>
 
-    
+    <header class="header">
+        <div class="logoDiv">
+            <img src="assets/images/sunroof.png" class="openLogo">
+        </div>
+    </header>
 
     
     <div id="app"></div>
+    
 
-    <div class="FB-button">
-        <fb:login-button 
-            scope="public_profile,email"
-            onlogin="checkLoginState();">
-            </fb:login-button>
-    </div>
+    <footer class="footer fixed-bottom align-middle">
+        <p><small>&copy; OpenLeagues</small></p>
+    </footer>
+
     <!-- link to bootstrap javascript cdn -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-
+    <!-- link to ajax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <!-- link to googlemaps api -->
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRjIOJ6oL36jplU9rmT9Htybkp4T6TveM&callback=initMap">
     </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRjIOJ6oL36jplU9rmT9Htybkp4T6TveM&callback=initMap2">
+    </script> 
+    
 </body>
 
 </html>

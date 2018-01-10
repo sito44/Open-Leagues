@@ -1,6 +1,26 @@
+.header {
+    height: 90px;
+    width: 100%;
+    margin-bottom: 1%;
+    opacity: 0.9;
+    background: linear-gradient(45deg, white 55%, #b1b9c6);
+}
+
+.openLogo {
+    margin-left: 1.5%;
+    opacity: 0.8;
+    max-height: 90px;
+}
+
+#app {
+    /*display: flex;*/
+}
+
 
 .d-block {
-    border: 10px solid #111;
+    border: 4px solid #b1b9c6;
+    padding: 2%;
+    position: relative;
 }
 
 .item {
@@ -12,38 +32,66 @@
 .overlay {
     color: #fff;
     position: absolute;
-    z-index: 12;
-    top: 50%;
-    left: 0;
     width: 100%;
-    height:100%;
     text-align: center;
+    margin-bottom: 1%;
+    display: flex;
+    flex-direction: column;
+}
+
+.openText {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: black;
+    font-size: 35px;
+    font-family: 'Poller One', cursive;
+    display: flex;
+    flex-direction: column;
+}
+
+.openDialogue {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.textDialogue {
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    margin: auto;
+    width: 80%;
+}
+
+.divForButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .btn {
     margin: 1%;
     margin-top: 2%;
-    border: 4px solid black;
+    border: 4px solid #b1b9c6;
     opacity: 0.8;
-
+    color: #464a4e;
+    background-color: #b1b9c6;
+    display: flex;
+    flex-direction: row;
+    max-width: 40%;
 }
 
-.openLogo {
-    border: 4px solid black;
-    border-radius: 10px;
-    opacity: 0.8;
-}
-
-.logo {
-    background-repeat: no-repeat;
-    position: absolute;
-    z-index: 12;
-    top: 10%;
-    left: 0%;
-    width: 100%;
-    height: 100%;
+.footer {
+    background-color: #b1b9c6;
+    color: #464a4e;
+    height: 4%;
+    bottom: 0;
+    left: 0;
+    right: 0;
     text-align: center;
-
+    margin-top: 3%;
+    line-height: 1.5;
 }
 
 .createPageStyle {
@@ -57,16 +105,28 @@ input {
     display: block;
 }
 
-.createEventLogo {
-
+textarea {
+    display: block;
 }
 
 .createPageMap {
+    display: flex;
+    position: relative;
     width: 100%;
-    height:75%;
+    height: 75%;
     border: 4px solid black;
     border-radius: 25px;
     padding: 5px;
+}
+.divForWeather {
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+}
+
+.wB {
+    flex:2;
+    border-right: 1px solid black;
 }
 
 .eventForm {
@@ -74,7 +134,6 @@ input {
     border: 4px solid black;
     border-radius: 25px;
     padding: 20px;
-
 }
 
 #app {
@@ -91,3 +150,77 @@ input {
 .eSubmit {
     margin-top: 15px;
 }
+
+.w3-modal {
+    left: 5%;
+    width: 90%;
+    margin:auto;
+    height: 100%;
+    padding: 2px;
+    position: fixed;
+    z-index: 1;
+    background-color: darkgray;
+    box-shadow: 2px 2px 35px black;
+}
+
+.w3-modal-content {
+    border-style: solid;
+    border-width: 2px;
+    border-color: #a4cdfd;
+    height: 100%;
+    background-color: white;
+    text-align: center;
+    padding:20% 15% 15% 15%;
+}
+
+.modalTxt {
+    font-size: 20px;
+}
+
+.modalButton {
+    width: 100px;
+    background-color: #a4cdfd;
+}
+
+.errorTxt {
+    color: red;
+}
+
+@media screen and (min-width: 415px) {
+
+    .openText {
+        background-color: rgba(255, 255, 255, 0.3);
+        font-size: 70px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+
+    .openText {
+        font-size: 90px;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+
+    .mainDialogue {
+        border-radius: 10px;
+    }
+
+    .openDialogue {
+        width: 50%;
+    }
+
+    .textDialogue {
+        padding: 4%;
+    }
+        
+    .overlay {
+        top: 30%;
+    }
+
+    .openDialogue {
+        margin-top: 8%;
+    }
+}
+
