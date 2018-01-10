@@ -13,14 +13,12 @@
 }
 
 #app {
-    border: 2px dashed rgba(0, 0, 0, 0.5);
-    background-color: white;
-    width: 100%;
-    position: absolute;
+    /*display: flex;*/
 }
 
 
 .d-block {
+    border: 4px solid #b1b9c6;
     padding: 2%;
     position: relative;
 }
@@ -86,7 +84,7 @@
 }
 
 .footer {
-    background: linear-gradient(45deg, white 55%, #b1b9c6);
+    background-color: #b1b9c6;
     color: #464a4e;
     height: 4%;
     bottom: 0;
@@ -139,7 +137,11 @@ textarea {
     padding: 20px;
 }
 
-
+#app {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
 
 .sportChoice {
     display: inherit;
@@ -194,7 +196,6 @@ textarea {
     .btn {
         font-size: 15px;
     }
-
 }
 
 @media screen and (min-width: 414px) {
@@ -208,7 +209,6 @@ textarea {
         font-size: 20px;
         width: 90%;
     }
-
 }
 
 @media screen and (min-width: 768px) {
@@ -218,15 +218,13 @@ textarea {
     }
 
     .textDialogue {
-    font-size: 25px;
-    }
+    font-size: 35px;
 
-    .openDialogue {
-        font-size: 15px;
+
     }
 
     .btn {
-        font-size: 20px;
+        font-size: 40px;
     }
 
     .openLogo {
@@ -243,17 +241,17 @@ textarea {
 @media screen and (min-width: 1024px) {
 
     .openText {
-        font-size: 70px;
+        font-size: 90px;
     }
 
     .textDialogue {
-    font-size: 35px;
+    font-size: 43px;
     width: 90%;
 
     }
 
     .btn {
-        font-size: 30px;
+        font-size: 40px;
     }
 
     .openLogo {
@@ -267,19 +265,21 @@ textarea {
     .logoDiv {
         height: 300%;
     }
-
 }
 
 @media screen and (min-width: 1025px) {
 
-
-
     .header {
-        height: 115px;
+        height: 10%;
+    }
+
+    .logoDiv {
+        height: 100%;
     }
 
     .openLogo {
-        height: 115px;
+        max-height: 115px;
+        height: 150px;
     }
 
     .mainDialogue {
@@ -303,8 +303,7 @@ textarea {
     }
         
     .overlay {
-        top: 20%;
-
+        top: 30%;
     }
 
 
@@ -312,10 +311,6 @@ textarea {
         color: black;
         font-size: 23px;
         background-color: rgba(255, 255, 255, 0.5);
-    }
-
-    #app {
-        background-image: url('../images/small-query.png');
     }
 }
 
