@@ -1,9 +1,49 @@
+/*FONT FAMILIES*/
+
+
+/*
+font-family: 'Poppins', sans-serif;
+font-family: 'Patua One', cursive;
+font-family: 'Poller One', cursive;
+*/
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../images/Sports.png');
+}
+
+input {
+    display: block;
+    border-radius: 5px;
+}
+
+textarea {
+    display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Patua One', cursive;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
 .header {
     height: 90px;
     width: 100%;
-    margin-bottom: 1%;
+    margin-bottom: 3%;
     opacity: 0.9;
     background: linear-gradient(45deg, white 55%, #b1b9c6);
+}
+
+.logoDiv {
+    border-bottom: 1px solid #b1b9c7;
+    box-shadow: 0 1px 10px black;
 }
 
 .openLogo {
@@ -12,23 +52,11 @@
     max-height: 90px;
 }
 
-#app {
-    border: 2px dashed rgba(0, 0, 0, 0.5);
-    background-color: white;
-    width: 100%;
-    position: absolute;
-}
-
-
 .d-block {
+
+    border: 4px solid #b1b9c6;
     padding: 2%;
     position: relative;
-}
-
-.item {
-    display: none;
-    position: relative;
-    transition: (.3s ease-in-out left);
 }
 
 .overlay {
@@ -37,8 +65,8 @@
     width: 100%;
     text-align: center;
     margin-bottom: 1%;
-    display: flex;
-    flex-direction: column;
+    /*display: flex;
+    flex-direction: column;*/
 }
 
 .openText {
@@ -46,16 +74,12 @@
     color: black;
     font-size: 35px;
     font-family: 'Poller One', cursive;
-    display: flex;
-    flex-direction: column;
 }
 
 .openDialogue {
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
     margin: auto;
-    display: flex;
-    flex-direction: column;
 }
 
 .textDialogue {
@@ -78,68 +102,79 @@
     opacity: 0.8;
     color: #464a4e;
     background-color: #b1b9c6;
-    display: flex;
-    flex-direction: row;
     max-width: 40%;
     font-family: 'Patua One', cursive;
+}
 
+.btn:hover {
+    background-color: #f7f8fa;
+}
+
+.btn:active {
+    background-color: #f7f8fa;
 }
 
 .footer {
-    background: linear-gradient(45deg, white 55%, #b1b9c6);
+    background-color: #b1b9c6;
     color: #464a4e;
     height: 4%;
-    bottom: 0;
-    left: 0;
-    right: 0;
     text-align: center;
-    margin-top: 3%;
     line-height: 1.5;
+    position: fixed;
+    padding-top: .3%;
+}
+
+.infoContainers {
+    border: 4px solid black;
+    border-radius: 20px;
+    margin-top: 3%;
+    padding: 6%;
+    background-color: white;
 }
 
 .createPageStyle {
-    width: 90%;
+    width: 95%;
     height: 90%;
-    padding: 5px;
-    margin-left: 5%;
+    padding: 2%;
+    margin: auto;
 }
 
-input {
-    display: block;
-}
-
-textarea {
-    display: block;
-}
 
 .createPageMap {
     display: flex;
     position: relative;
     width: 100%;
-    height: 75%;
-    border: 4px solid black;
-    border-radius: 25px;
-    padding: 5px;
+    height: 85%;
+    margin-top: 2%;
 }
-.divForWeather {
+
+.searchMap {
+    width: 100%;
+    height: 100%;
+}
+
+.weatherInfo {
     display: flex;
-    flex-direction:row;
+    flex-direction: column;
     flex-wrap: wrap;
 }
 
 .wB {
-    flex:2;
-    border-right: 1px solid black;
+    flex: 2;
+    border-top: 1px dashed black;
+    margin-top: 3%;
+    padding-top: 3%;
 }
 
 .eventForm {
-    margin-top: 10px;
-    border: 4px solid black;
-    border-radius: 25px;
-    padding: 20px;
+    margin-bottom: 10%;
 }
 
-
+#app {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
 
 .sportChoice {
     display: inherit;
@@ -148,12 +183,23 @@ textarea {
 
 .eSubmit {
     margin-top: 15px;
+    background-color: #e9ebef;
+    border-radius: 5px;
+    padding: 1% 3% 1% 3%;
+}
+
+.eSubmit:hover {
+    background-color: #eff1f3;
+}
+
+.eSubmit:active {
+    background-color: #eff1f3;
 }
 
 .w3-modal {
     left: 5%;
     width: 90%;
-    margin:auto;
+    margin: auto;
     height: 100%;
     padding: 2px;
     position: fixed;
@@ -169,7 +215,7 @@ textarea {
     height: 100%;
     background-color: white;
     text-align: center;
-    padding:20% 15% 15% 15%;
+    padding: 20% 15% 15% 15%;
 }
 
 .modalTxt {
@@ -183,6 +229,7 @@ textarea {
 
 .errorTxt {
     color: red;
+    margin-top: 3%;
 }
 
 
@@ -194,7 +241,6 @@ textarea {
     .btn {
         font-size: 15px;
     }
-
 }
 
 @media screen and (min-width: 414px) {
@@ -208,25 +254,20 @@ textarea {
         font-size: 20px;
         width: 90%;
     }
-
 }
 
 @media screen and (min-width: 768px) {
 
-     .openText {
+    .openText {
         font-size: 75px;
     }
 
     .textDialogue {
-    font-size: 25px;
-    }
-
-    .openDialogue {
-        font-size: 15px;
+        font-size: 35px;
     }
 
     .btn {
-        font-size: 20px;
+        font-size: 40px;
     }
 
     .openLogo {
@@ -236,24 +277,21 @@ textarea {
     .header {
         height: 150px;
     }
-
-
 }
 
 @media screen and (min-width: 1024px) {
 
     .openText {
-        font-size: 70px;
+        font-size: 90px;
     }
 
     .textDialogue {
-    font-size: 35px;
-    width: 90%;
-
+        font-size: 43px;
+        width: 90%;
     }
 
     .btn {
-        font-size: 30px;
+        font-size: 40px;
     }
 
     .openLogo {
@@ -267,19 +305,65 @@ textarea {
     .logoDiv {
         height: 300%;
     }
-
 }
 
 @media screen and (min-width: 1025px) {
+    .infoContainers {
+        margin-top: 2%;
+        padding: 2%;
+        margin-right: 2%;
+    }
+    .searchMap {
+        width: 100%;
+    }
+    .createPageStyle {
+        padding: 0;
+        display: flex;
+        -ms-box-orient: horizontal;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -moz-flex;
+        display: -webkit-flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    .createPageMap {
+        height: 100%;
+        flex-basis: 71%;
+        order: 1;
+    }
 
-
-
+    .weatherBox {
+        height: 45%;
+        order: 3;
+    }
+    .weatherInfo {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .eventForm {
+        order: 2;
+        flex-grow: 2;
+        margin-bottom: 0;
+        padding: 0 0 1% 2%;
+    }
+    label {
+        margin-top: 1.5%;
+    }
     .header {
-        height: 115px;
+        height: 10%;
+        margin-bottom: 2%;
+    }
+
+    .logoDiv {
+        height: 100%;
     }
 
     .openLogo {
-        height: 115px;
+        max-height: 115px;
+        height: 150px;
     }
 
     .mainDialogue {
@@ -299,12 +383,10 @@ textarea {
         font-weight: bold;
         font-size: 25px;
         width: 90%;
-
     }
-        
-    .overlay {
-        top: 20%;
 
+    .overlay {
+        top: 30%;
     }
 
 
@@ -313,6 +395,4 @@ textarea {
         font-size: 23px;
         background-color: rgba(255, 255, 255, 0.5);
     }
-
-}
 

@@ -22,9 +22,10 @@ $(function() {
     var ltLgString;
     var ltLgArray;
     var hasBeenClicked = false;
+    var markerChecker;
 
     landingPage();
-    
+
 
 
 
@@ -160,13 +161,12 @@ $(function() {
         elementArray = [];
 
         var main = $('<main class="createPageStyle">');
-        var mapContainer = $('<div id="searchMap" class="createPageMap">');
+        var mapContainer = $('<div id="searchMap" class="searchMap infoContainers">');
         elementArray.push(mapContainer);
-        
+
         appender(elementArray, main);
         appContainer.append(main);
         var modal = $('<div class="modal"></div>');
-        //modal.prepend($('<div class="modal-inner"></div>'));
         main.append(modal);
         initMap2();
 
@@ -183,13 +183,14 @@ $(function() {
         var childElements = [];
 
         var main = $('<main class="createPageStyle">');
-        var mapContainer = $('<div id="map" class="createPageMap">');
-        var weatherDiv = $('<div class="eventForm" id="weatherBox">');
+        var mapContainer = $('<div id="map" class="createPageMap infoContainers">');
+        var weatherDiv = $('<div class="infoContainers weatherBox" id="weatherBox">');
         var weatherHeader = $('<h4>');
-        var weatherInfoContainer = $('<div id="weatherInfo" class="divForWeather">');
+        var weatherInfoContainer = $('<div id="weatherInfo" class="weatherInfo">');
         weatherDiv.append(weatherHeader);
         weatherDiv.append(weatherInfoContainer);
-        var form = $('<form class="eventForm">');
+        var form = $('<form class="eventForm infoContainers">');
+        var footerGap = $('<span>');
         var address = $('<h4>');
         var sportsSelector = $('<select name="sports" id="selectedSport" class="sportChoice">');
         var sportsOptions =
@@ -218,9 +219,10 @@ $(function() {
         var maxPeople = $('<input type="text" name="maxPeople" id="maxPeople" placeholder="4-50">');
         var maxPeopleError = $('<div id="maxPeopleError" class="errorTxt">');
         var labelRules = $('<label for="rules">');
-        var rules = $('<textarea name="rules" id="rules" placeholder="100 word minimum" rows="10" cols="50">')
+        var rules = $('<textarea name="rules" id="rules" placeholder="100 word minimum" rows="10" cols="29">');
         var rulesError = $('<div id="rulesError" class="errorTxt">');
         var eventSubmit = $('<button id="eventSubmit" class="eSubmit">');
+        var markerError = $('<div id="markerError" class="errorTxt">');
         sportsSelector.html(sportsOptions);
 
         weatherHeader.text('Selected Area Five Day Weather Forcast');
@@ -252,24 +254,21 @@ $(function() {
             labelRules,
             rules,
             rulesError,
-            eventSubmit);
+            eventSubmit,
+            markerError);
 
         appender(childElements, form);
         elementArray.push(mapContainer);
         elementArray.push(weatherDiv);
         elementArray.push(form);
+        elementArray.push(footerGap);
         appender(elementArray, main);
 
         appContainer.append(main);
         initMap();
 
-        //createModal();
-        // checkBtnClick();
 
     }
-
-    // ------------------------------------------Function for counting characters in text area
-
 
     // -----------------------------------------Form Validation
 
@@ -286,11 +285,17 @@ $(function() {
         var startTimeResult = startTimeRegX.test(startTimeInput);
         var durationRegX = /^([1-4])$/;
         var durationResult = durationRegX.test(durationInput);
-        var maxNumRegex = /^(5[0-0]|[1-4][0-9]|[3-9])$/
+        var maxNumRegex = /^(5[0-0]|[1-4][0-9]|[3-9])$/;
         var maxNumResult = maxNumRegex.test(maxPeopleInput);
 
-       
+
         // --------------------------------------------date validation
+
+        if (markerChecker === undefined) {
+            $('#markerError').text('Select a Location');
+        } else {
+            $('#markerError').empty();
+        }
 
         if (dateResult === false) {
             $('#dateError').text('Use a valid format mm/dd/2018');
@@ -304,53 +309,53 @@ $(function() {
 
         if (startTimeResult === false) {
             $('#startTimeError').text('Use a valid format HH:mmam/pm');
-           
+
         } else {
             $('#startTimeError').empty();
         }
 
         //-----------------------------------------duration validation
-        
+
         if (durationResult === false) {
             $('#durationError').text('Enter a number between 1-4');
-            
+
         } else {
             $('#durationError').empty();
         }
 
         //-------------------------------------------max number validation
-         
-         if (maxNumResult === false) {
-             $('#maxPeopleError').text('Enter a number between 4-50');
-         } else {
+
+        if (maxNumResult === false) {
+            $('#maxPeopleError').text('Enter a number between 4-50');
+        } else {
             $('#maxPeopleError').empty();
-         }
+        }
 
         // ---------------------------------------------rules validation
 
-         if (rulesInput.length < 100) {
-            $('#rulesError').text('Enter at Least 100 characters')
-         } else {
+        if (rulesInput.length < 100) {
+            $('#rulesError').text('Enter at Least 100 characters');
+        } else {
             $('#rulesError').empty();
-         }
+        }
 
-         if (dateResult === true && startTimeResult === true && durationResult === true && maxNumResult === true && rulesInput.length > 100) {
-            console.log('working!')
-            firebaseDataInput(dateInput, selectedSport, startTimeInput, durationInput, maxPeopleInput, rulesInput);
+        if (dateResult === true && startTimeResult === true && durationResult === true && maxNumResult === true && rulesInput.length > 100) {
+            console.log('working!');
+            firebaseDataInput(dateInput, sportInput, startTimeInput, durationInput, maxPeopleInput, rulesInput);
 
-         }
-
-
+        }
 
     }
+
     // -----------------------------------------initialize google maps function on create event page
+
     function initMap() {
 
         var marker;
-
+        markerChecker = marker;
         map = new google.maps.Map(document.getElementById('map'), {
             center: { lat: 32.852, lng: -117.185 },
-            zoom: 10
+            zoom: 9
         });
 
         function placeMarker(location) {
@@ -372,17 +377,20 @@ $(function() {
             ltLgString = marker.getPosition().toString();
             ltLgConverter(ltLgString);
             getWeather(parseFloat(ltLgArray[0]), parseFloat(ltLgArray[1]));
+            console.log(ltLgString);
 
 
         });
 
     }
+
     // -----------------------------------------initialize google maps function on search page
+
     function initMap2() {
 
         map2 = new google.maps.Map(document.getElementById('searchMap'), {
             center: { lat: 32.852, lng: -117.185 },
-            zoom: 10
+            zoom: 9
         });
 
 
@@ -396,7 +404,6 @@ $(function() {
                 let startTime = eventData[m].startTime;
                 let duration = eventData[m].duration;
                 let maxPeople = eventData[m].maxPeople;
-                let benchSeats = eventData[m].benchSeats;
                 let rules = eventData[m].rules;
                 let iconBtn;
                 let contentString =
@@ -405,15 +412,14 @@ $(function() {
                     '<h2>Open ' + selectedSport + ' League</h2>' +
                     '<h3>Address: ' + address + '</h3>' +
                     '<p>Start Time: ' + startTime + '</p>' +
-                    '<p>Duration: ' + duration + '</p>' +
+                    '<p>Duration: ' + duration + ' hours</p>' +
                     '<p>Max Number of People: ' + maxPeople + '</p>' +
-                    '<p>Bench Seats: ' + benchSeats + '</p>' +
                     '<p>Rules: ' + rules + '</p>';
 
 
                 switch (selectedSport) {
                     case "Soccer":
-                        iconBtn = "./assets/images/soccerIcon.png'";
+                        iconBtn = "./assets/images/soccerIcon.png";
                         break;
                     case "Football":
                         iconBtn = "./assets/images/footBallIcon.png";
@@ -439,20 +445,17 @@ $(function() {
 
                 }
 
-                console.log(iconBtn);
                 let image = {
                     url: iconBtn,
-                    // This marker is 20 pixels wide by 32 pixels high.
                     size: new google.maps.Size(40, 40),
-                    // The origin for this image is (0, 0).
                     origin: new google.maps.Point(0, 0),
-                    // The anchor for this image is the base of the flagpole at (0, 32).
                     anchor: new google.maps.Point(0, 32)
                 };
 
                 let infowindow = new google.maps.InfoWindow({
                     content: contentString
                 });
+
 
 
                 let marker = new google.maps.Marker({
@@ -464,13 +467,13 @@ $(function() {
 
                 marker.info = infowindow;
 
-                function toggleBounce() {
+                let toggleBounce = function() {
                     if (marker.getAnimation() !== null) {
                         marker.setAnimation(null);
                     } else {
                         marker.setAnimation(google.maps.Animation.BOUNCE);
                     }
-                }
+                };
                 google.maps.event.addListener(marker, 'click', function() {
                     marker.info.open(map2, marker);
                     toggleBounce();
@@ -483,17 +486,15 @@ $(function() {
         placeMarkers(searchMapArray);
     }
 
-    console.log(searchMapArray);
-
     // ----------------------------------adds click handlers on buttons - event delegation
 
     $('body').on('click', '#headerLogo', function() {
-        landingPage();  
+        landingPage();
     });
 
     $('body').on('click', '#createBtn', function() {
         createPage();
-        /*login();*/
+        login();
     });
     $('body').on('click', '#searchBtn', function() {
         searchPage();
@@ -504,10 +505,8 @@ $(function() {
     });
 
     $('body').on('click', '#eventSubmit', function() {
-        /*login();*/
         event.preventDefault();
         validateForm();
-        /*firebaseDataInput();*/
     });
 
 
@@ -518,11 +517,7 @@ $(function() {
         ltLgConverter(ltLgString);
         var geocoder = new google.maps.Geocoder;
         var latLng = { lat: parseFloat(ltLgArray[0]), lng: parseFloat(ltLgArray[1]) };
-        /*var sportInput = $("#selectedSport").val().trim();
-        var startTimeInput = $("#startTime").val().trim();
-        var durationInput = $("#durationTime").val().trim();
-        var maxPeopleInput = $("#maxPeople").val().trim();
-        var rules = $('#rules').val().trim();*/
+
 
         geocoder.geocode({ 'location': latLng }, function(results, status) {
             console.log(results);
@@ -530,8 +525,8 @@ $(function() {
                 if (results[0]) {
                     var x = results[0].formatted_address;
                     var currentUser = {
-                        lat: ltLgArray[0],
-                        lng: ltLgArray[1],
+                        lat: latLng.lat,
+                        lng: latLng.lng,
                         date: date,
                         selectedSport: selectedSport,
                         address: x,
@@ -552,7 +547,7 @@ $(function() {
 
         });
 
-        
+
     }
 
     OLdatabase.ref('userEvents/').on("child_added", function(snapshot) {
@@ -561,9 +556,21 @@ $(function() {
 
     });
 
-    // -------------------------------------------------- weather api calls
+    // --------------------------------------------------weather api calls
 
     let latitude, longitude;
+
+    function timeShift(stringArray) {
+
+        var splitter = stringArray.map(function(string1) {
+            return string1.split(' ');
+        });
+
+        var dateArray = splitter.map(function(string2) {
+            return string2.shift();
+        });
+        return dateArray;
+    }
 
     function getWeather(latitude, longitude) {
 
@@ -572,7 +579,6 @@ $(function() {
             var queryURL = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude +
                 '&units=imperial&APPID=eae68fa56af3e63c236a36180ed2fe9c';
 
-            console.log(queryURL);
 
             $.ajax({
                 url: queryURL,
@@ -581,8 +587,7 @@ $(function() {
                 console.log(response);
                 var results = response;
 
-                console.log(results);
-
+                let days = [];
                 let city = results.city.name;
                 // ------------------------------ get the date from weather api 
                 let weatherDayOne = results.list[4].dt_txt;
@@ -590,19 +595,35 @@ $(function() {
                 let weatherDayThree = results.list[20].dt_txt;
                 let weatherDayFour = results.list[28].dt_txt;
                 let weatherDayFive = results.list[36].dt_txt;
+                days.push(weatherDayOne);
+                days.push(weatherDayTwo);
+                days.push(weatherDayThree);
+                days.push(weatherDayFour);
+                days.push(weatherDayFive);
+                let noTime = timeShift(days);
+                weatherDayOne = noTime[0];
+                weatherDayTwo = noTime[1];
+                weatherDayThree = noTime[2];
+                weatherDayFour = noTime[3];
+                weatherDayFive = noTime[4];
+
+
                 // -------------------------------- get the temperature from weather api
+
                 let temperatureDayOne = results.list[4].main.temp;
                 let temperatureDayTwo = results.list[12].main.temp;
                 let temperatureDayThree = results.list[20].main.temp;
                 let temperatureDayFour = results.list[28].main.temp;
                 let temperatureDayFive = results.list[36].main.temp;
                 // ------------------------------ get the weather description from weather api 
+
                 let weatherDescriptionDayOne = response.list[4].weather[0].description;
                 let weatherDescriptionDayTwo = response.list[12].weather[0].description;
                 let weatherDescriptionDayThree = response.list[20].weather[0].description;
                 let weatherDescriptionDayFour = response.list[28].weather[0].description;
                 let weatherDescriptionDayFive = response.list[36].weather[0].description;
                 // --------------------------------- get the wind speed from weather a
+
                 let windDayOne = response.list[4].wind.speed;
                 let windDayTwo = response.list[12].wind.speed;
                 let windDayThree = response.list[20].wind.speed;
@@ -610,34 +631,35 @@ $(function() {
                 let windDayFive = response.list[36].wind.speed;
 
                 // --------------------- put weather info on the page
+
                 $('#weatherInfo').html(
 
                     '<div class="fLeft wB">' +
-                    '<p>Date: ' + weatherDayOne + 'pm</p>' +
+                    '<p>Date: ' + weatherDayOne + '</p>' +
                     '<p>Temperature: ' + temperatureDayOne + '</p>' +
                     '<p>Condition: ' + weatherDescriptionDayOne + '</p>' +
                     '<p>Wind: ' + windDayOne + ' mph</p>' +
                     '</div>' +
                     '<div class="wB">' +
-                    '<p>Date: ' + weatherDayTwo + 'pm</p>' +
+                    '<p>Date: ' + weatherDayTwo + '</p>' +
                     '<p>Temperature: ' + temperatureDayTwo + '</p>' +
                     '<p>Condition: ' + weatherDescriptionDayTwo + '</p>' +
                     '<p>Wind: ' + windDayTwo + ' mph</p>' +
                     '</div>' +
                     '<div class="wB">' +
-                    '<p>Date: ' + weatherDayThree + 'pm</p>' +
+                    '<p>Date: ' + weatherDayThree + '</p>' +
                     '<p>Temperature: ' + temperatureDayThree + '</p>' +
                     '<p>Condition: ' + weatherDescriptionDayThree + '</p>' +
                     '<p>Wind: ' + windDayThree + ' mph</p>' +
                     '</div>' +
                     '<div class="wB">' +
-                    '<p>Date: ' + weatherDayFour + 'pm</p>' +
+                    '<p>Date: ' + weatherDayFour + '</p>' +
                     '<p>Temperature: ' + temperatureDayFour + '</p>' +
                     '<p>Condition: ' + weatherDescriptionDayFour + '</p>' +
                     '<p>Wind: ' + windDayFour + ' mph</p>' +
                     '</div>' +
                     '<div class="wB">' +
-                    '<p>Date: ' + weatherDayFive + 'pm</p>' +
+                    '<p>Date: ' + weatherDayFive + '</p>' +
                     '<p>Temperature: ' + temperatureDayFive + '</p>' +
                     '<p>Condition: ' + weatherDescriptionDayFive + '</p>' +
                     '<p>Wind: ' + windDayFive + ' mph</p>' +
