@@ -218,7 +218,7 @@ $(function() {
         var maxPeople = $('<input type="text" name="maxPeople" id="maxPeople" placeholder="4-50">');
         var maxPeopleError = $('<div id="maxPeopleError" class="errorTxt">');
         var labelRules = $('<label for="rules">');
-        var rules = $('<textarea name="rules" id="rules" placeholder="100 word minimum" rows="10" cols="50">')
+        var rules = $('<textarea name="rules" id="rules" placeholder="100 word minimum" rows="10" cols="50">');
         var rulesError = $('<div id="rulesError" class="errorTxt">');
         var eventSubmit = $('<button id="eventSubmit" class="eSubmit">');
         sportsSelector.html(sportsOptions);
@@ -329,7 +329,7 @@ $(function() {
         // ---------------------------------------------rules validation
 
          if (rulesInput.length < 100) {
-            $('#rulesError').text('Enter at Least 100 characters')
+            $('#rulesError').text('Enter at Least 100 characters');
          } else {
             $('#rulesError').empty();
          }
@@ -438,7 +438,6 @@ $(function() {
 
                 }
 
-                console.log(iconBtn);
                 let image = {
                     url: iconBtn,
                     // This marker is 20 pixels wide by 32 pixels high.
@@ -452,6 +451,7 @@ $(function() {
                 let infowindow = new google.maps.InfoWindow({
                     content: contentString
                 });
+                
 
 
                 let marker = new google.maps.Marker({
@@ -463,13 +463,13 @@ $(function() {
 
                 marker.info = infowindow;
 
-                function toggleBounce() {
+                let toggleBounce = function() {
                     if (marker.getAnimation() !== null) {
                         marker.setAnimation(null);
                     } else {
                         marker.setAnimation(google.maps.Animation.BOUNCE);
                     }
-                }
+                };
                 google.maps.event.addListener(marker, 'click', function() {
                     marker.info.open(map2, marker);
                     toggleBounce();
