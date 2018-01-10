@@ -270,6 +270,7 @@ textarea {
 @media screen and (min-width: 1025px) {
 
     .header {
+<<<<<<< HEAD
         height: 10%;
     }
 
@@ -279,6 +280,13 @@ textarea {
 
     .openLogo {
         max-height: 115px;
+=======
+        height: 150px;
+    }
+
+    .openLogo {
+        height: 150px;
+>>>>>>> 26372b2ff9455d2a750870446d9cb9cbd076e9b0
     }
 
     .mainDialogue {
