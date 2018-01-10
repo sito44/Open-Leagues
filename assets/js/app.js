@@ -133,16 +133,18 @@ $(function() {
         var openDialogue = $('<div class="openDialogue">');
         var textDialogue = $('<p class="textDialogue">Welcome to Open Leagues! Click on the Search Button to find local sports leagues and events. Click on the Create Event button to create your own events and dream team.</p>');
         var main = $('<main id="main" class="mainStyle overlay">');
+        var buttonDiv = $('<div class="divForButtons">');
         var searchBtn = $('<button id="searchBtn" class="btnStyle btn btn-lg active">');
         var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active">');
+        buttonDiv.append(searchBtn);
+        buttonDiv.append(createBtn);
         searchBtn.text('Search');
         createBtn.text('Create Event');
         openText.prepend(openTextText);
         openDialogue.prepend(textDialogue);
         main.append(openText);
         main.append(openDialogue);
-        main.append(searchBtn);
-        main.append(createBtn);
+        main.append(buttonDiv);
         elementArray.push(carousel);
         elementArray.push(main);
 
