@@ -84,8 +84,10 @@ $(function() {
         var modalContent = $('<div class="w3-modal-content">');
         var modalTxt = $('<p class="modalText">You Must Log In With Facebook to Continue</p>');
         var modalBtn = $('<button class="modalButton">Retry</button>');
+        var FBimage = $('<img class="FBimage" src="assets/images/facebook-vector-logo.png">');
         modal.prepend(modalContent);
-        modalContent.prepend(modalTxt);
+        modalContent.append(FBimage);
+        modalContent.append(modalTxt);
         modalContent.append(modalBtn);
         $('#app').prepend(modal);
     }

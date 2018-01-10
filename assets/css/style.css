@@ -197,14 +197,11 @@ h3 {
 }
 
 .w3-modal {
-    left: 5%;
-    width: 90%;
-    margin: auto;
-    height: 100%;
+    background-color: darkgray;
+    width: 100%;
     padding: 2px;
     position: fixed;
     z-index: 1;
-    background-color: darkgray;
     box-shadow: 2px 2px 35px black;
 }
 
@@ -213,9 +210,9 @@ h3 {
     border-width: 2px;
     border-color: #a4cdfd;
     height: 100%;
-    background-color: white;
+    background-image: url('../images/Sports.png');
     text-align: center;
-    padding: 20% 15% 15% 15%;
+    padding: 5%;
 }
 
 .modalTxt {
@@ -224,7 +221,13 @@ h3 {
 
 .modalButton {
     width: 100px;
-    background-color: #a4cdfd;
+    background-color: #6271a8;
+    color: white;
+}
+
+.FBimage {
+    width: 15%;
+    padding: 2%;
 }
 
 .errorTxt {
