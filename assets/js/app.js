@@ -286,7 +286,7 @@ $(function() {
         var startTimeResult = startTimeRegX.test(startTimeInput);
         var durationRegX = /^([1-4])$/;
         var durationResult = durationRegX.test(durationInput);
-        var maxNumRegex = /^(5[0-0]|[1-4][0-9]|[3-9])$/
+        var maxNumRegex = /^(5[0-0]|[1-4][0-9]|[3-9])$/;
         var maxNumResult = maxNumRegex.test(maxPeopleInput);
 
        
@@ -335,8 +335,8 @@ $(function() {
          }
 
          if (dateResult === true && startTimeResult === true && durationResult === true && maxNumResult === true && rulesInput.length > 100) {
-            console.log('working!')
-            firebaseDataInput(dateInput, selectedSport, startTimeInput, durationInput, maxPeopleInput, rulesInput);
+            console.log('working!');
+            firebaseDataInput(dateInput, sportInput, startTimeInput, durationInput, maxPeopleInput, rulesInput);
 
          }
 
@@ -372,6 +372,7 @@ $(function() {
             ltLgString = marker.getPosition().toString();
             ltLgConverter(ltLgString);
             getWeather(parseFloat(ltLgArray[0]), parseFloat(ltLgArray[1]));
+            console.log(ltLgString);
 
 
         });
@@ -413,28 +414,28 @@ $(function() {
 
                 switch (selectedSport) {
                     case "Soccer":
-                        iconBtn = "./assets/images/soccerIcon.png'";
+                        iconBtn = "../images/soccerIcon.png'";
                         break;
                     case "Football":
-                        iconBtn = "./assets/images/footBallIcon.png";
+                        iconBtn = "../images/footBallIcon.png";
                         break;
                     case "Volleyball":
-                        iconBtn = "./assets/images/volleyBallIcon.png";
+                        iconBtn = "../images/volleyBallIcon.png";
                         break;
                     case "Hockey":
-                        iconBtn = "./assets/images/hockeyIcon.png";
+                        iconBtn = "../images/hockeyIcon.png";
                         break;
                     case "Baseball":
-                        iconBtn = "./assets/images/baseballIcon.png";
+                        iconBtn = "../images/baseballIcon.png";
                         break;
                     case "BasketBall":
-                        iconBtn = "./assets/images/basketballIcon.png";
+                        iconBtn = "../images/basketballIcon.png";
                         break;
                     case "Golf":
-                        iconBtn = "./assets/images/golfIcon.png";
+                        iconBtn = "../images/golfIcon.png";
                         break;
                     case "Pool":
-                        iconBtn = "./assets/images/poolIcon.png";
+                        iconBtn = "../images/poolIcon.png";
                         break;
 
                 }
@@ -483,6 +484,7 @@ $(function() {
         placeMarkers(searchMapArray);
     }
 
+
     console.log(searchMapArray);
 
     // ----------------------------------adds click handlers on buttons - event delegation
@@ -518,6 +520,7 @@ $(function() {
         ltLgConverter(ltLgString);
         var geocoder = new google.maps.Geocoder;
         var latLng = { lat: parseFloat(ltLgArray[0]), lng: parseFloat(ltLgArray[1]) };
+        console.log(latLng);
         /*var sportInput = $("#selectedSport").val().trim();
         var startTimeInput = $("#startTime").val().trim();
         var durationInput = $("#durationTime").val().trim();
@@ -530,8 +533,8 @@ $(function() {
                 if (results[0]) {
                     var x = results[0].formatted_address;
                     var currentUser = {
-                        lat: ltLgArray[0],
-                        lng: ltLgArray[1],
+                        lat: latLng.lat,
+                        lng: latLng.lng,
                         date: date,
                         selectedSport: selectedSport,
                         address: x,
