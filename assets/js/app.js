@@ -439,7 +439,7 @@ $(function() {
                         break;
 
                 }
-soccerIcon.png
+
                 console.log(iconBtn);
                 let image = {
                     url: iconBtn,
