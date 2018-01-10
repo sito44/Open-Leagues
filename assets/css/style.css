@@ -115,7 +115,8 @@ h3 {
 }
 
 .footer {
-    background-color: #b1b9c6;
+    border-top: 1px solid #b1b9c7;
+    background: linear-gradient(45deg, white 55%, #b1b9c6);
     color: #464a4e;
     height: 4%;
     text-align: center;
