@@ -414,28 +414,28 @@ $(function() {
 
                 switch (selectedSport) {
                     case "Soccer":
-                        iconBtn = "../images/soccerIcon.png'";
+                        iconBtn = "./assets/images/soccerIcon.png'";
                         break;
                     case "Football":
-                        iconBtn = "../images/footBallIcon.png";
+                        iconBtn = "./assets/images/footBallIcon.png";
                         break;
                     case "Volleyball":
-                        iconBtn = "../images/volleyBallIcon.png";
+                        iconBtn = "./assets/images/volleyBallIcon.png";
                         break;
                     case "Hockey":
-                        iconBtn = "../images/hockeyIcon.png";
+                        iconBtn = "./assets/images/hockeyIcon.png";
                         break;
                     case "Baseball":
-                        iconBtn = "../images/baseballIcon.png";
+                        iconBtn = "./assets/images/baseballIcon.png";
                         break;
                     case "BasketBall":
-                        iconBtn = "../images/basketballIcon.png";
+                        iconBtn = "./assets/images/basketballIcon.png";
                         break;
                     case "Golf":
-                        iconBtn = "../images/golfIcon.png";
+                        iconBtn = "./assets/images/golfIcon.png";
                         break;
                     case "Pool":
-                        iconBtn = "../images/poolIcon.png";
+                        iconBtn = "./assets/images/poolIcon.png";
                         break;
 
                 }
