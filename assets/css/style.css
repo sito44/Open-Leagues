@@ -78,7 +78,7 @@
     color: #464a4e;
     background-color: #b1b9c6;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     max-width: 40%;
 }
 
