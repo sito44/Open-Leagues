@@ -24,6 +24,7 @@ $(function() {
     var hasBeenClicked = false;
 
     landingPage();
+    appender(elementArray, appContainer);
 
 
 
@@ -107,7 +108,7 @@ $(function() {
     }
     // -------------------------------------------------function that generates the landing page
     function landingPage() {
-        elementArray = [];
+
 
         emptyAppContainer();
 
@@ -132,23 +133,18 @@ $(function() {
         var openDialogue = $('<div class="openDialogue">');
         var textDialogue = $('<p class="textDialogue">Welcome to Open Leagues! Click on the Search Button to find local sports leagues and events. Click on the Create Event button to create your own events and dream team.</p>');
         var main = $('<main id="main" class="mainStyle overlay">');
-        var buttonDiv = $('<div class="divForButtons">');
         var searchBtn = $('<button id="searchBtn" class="btnStyle btn btn-lg active">');
         var createBtn = $('<button id="createBtn" class="btnStyle btn btn-lg active">');
-        buttonDiv.append(searchBtn);
-        buttonDiv.append(createBtn);
         searchBtn.text('Search');
         createBtn.text('Create Event');
         openText.prepend(openTextText);
         openDialogue.prepend(textDialogue);
         main.append(openText);
         main.append(openDialogue);
-        main.append(buttonDiv);
-        // main.append(createBtn);
+        main.append(searchBtn);
+        main.append(createBtn);
         elementArray.push(carousel);
         elementArray.push(main);
-        console.log(elementArray);
-        appender(elementArray, appContainer);
 
     }
     // -------------------------------------------------- function generates the Search Page
@@ -279,7 +275,7 @@ $(function() {
         var durationInput = $('#durationTime').val().trim();
         var maxPeopleInput = $('#maxPeople').val().trim();
         var rulesInput = $('#rules').val();
-        var dateRegex = /^(0[1-9]{1}|[12]{1}[0-9]{1}|3[01]{1}).{1}(0[1-9]{1}|1[0-2]{1}).{1}([12]{1}[0-9]{3})$/;
+        var dateRegex = /^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](20)[18]{2}$/;
         var dateResult = dateRegex.test(dateInput);
         var startTimeRegX = /^(0?[1-9]|1[012]):[0-5][0-9]([AaPp][Mm])$/i;
         var startTimeResult = startTimeRegX.test(startTimeInput);
@@ -486,15 +482,10 @@ $(function() {
 
     // ----------------------------------adds click handlers on buttons - event delegation
 
-    $('body').on('click', '#headerLogo', function() {
-        landingPage();  
-    });
-
     $('body').on('click', '#createBtn', function() {
         createPage();
         /*login();*/
     });
-
     $('body').on('click', '#searchBtn', function() {
         searchPage();
     });
@@ -584,32 +575,48 @@ $(function() {
                 console.log(results);
 
                 let city = results.city.name;
-                // ------------------------------ get the date from weather api
+                console.log(city);
                 let weatherDayOne = results.list[4].dt_txt;
                 let weatherDayTwo = results.list[12].dt_txt;
                 let weatherDayThree = results.list[20].dt_txt;
                 let weatherDayFour = results.list[28].dt_txt;
                 let weatherDayFive = results.list[36].dt_txt;
-                // -------------------------------- get the temperature from weather api
+                console.log('Day One: ' + weatherDayOne);
+                console.log('Day Two: ' + weatherDayTwo);
+                console.log('Day Three: ' + weatherDayThree);
+                console.log('Day Four: ' + weatherDayFour);
+                console.log('Day Five: ' + weatherDayFive);
                 let temperatureDayOne = results.list[4].main.temp;
                 let temperatureDayTwo = results.list[12].main.temp;
                 let temperatureDayThree = results.list[20].main.temp;
                 let temperatureDayFour = results.list[28].main.temp;
                 let temperatureDayFive = results.list[36].main.temp;
-                // ------------------------------ get the weather description from weather api
+                console.log('Temp Day One: ' + temperatureDayOne);
+                console.log('Temp Day Two: ' + temperatureDayTwo);
+                console.log('Temp Day Three: ' + temperatureDayThree);
+                console.log('Temp Day Four: ' + temperatureDayFour);
+                console.log('Temp Day Five: ' + temperatureDayFive);
                 let weatherDescriptionDayOne = response.list[4].weather[0].description;
                 let weatherDescriptionDayTwo = response.list[12].weather[0].description;
                 let weatherDescriptionDayThree = response.list[20].weather[0].description;
                 let weatherDescriptionDayFour = response.list[28].weather[0].description;
                 let weatherDescriptionDayFive = response.list[36].weather[0].description;
-                // --------------------------------- get the wind speed from weather api
+                console.log('Weather Description Day One: ' + weatherDescriptionDayOne);
+                console.log('Weather Description Day Two: ' + weatherDescriptionDayTwo);
+                console.log('Weather Description Day Three: ' + weatherDescriptionDayThree);
+                console.log('Weather Description Day Four: ' + weatherDescriptionDayFour);
+                console.log('Weather Description Day Five: ' + weatherDescriptionDayFive);
                 let windDayOne = response.list[4].wind.speed;
                 let windDayTwo = response.list[12].wind.speed;
                 let windDayThree = response.list[20].wind.speed;
                 let windDayFour = response.list[28].wind.speed;
                 let windDayFive = response.list[36].wind.speed;
-                
-                // --------------------- put weather info on the page
+                console.log('Wind Day One: ' + windDayOne);
+                console.log('Wind Day Two: ' + windDayTwo);
+                console.log('Wind Day Three: ' + windDayThree);
+                console.log('Wind Day Four: ' + windDayFour);
+                console.log('Wind Day Five: ' + windDayFive);
+
                 $('#weatherInfo').html(
 
                     '<div class="fLeft wB">' +
@@ -643,10 +650,16 @@ $(function() {
                     '<p>Wind: ' + windDayFive + ' mph</p>' +
                     '</div>');
 
+
+
+
+
+
             });
 
         }
     }
+
 
 
 });
