@@ -275,7 +275,7 @@ $(function() {
         var durationInput = $('#durationTime').val().trim();
         var maxPeopleInput = $('#maxPeople').val().trim();
         var rulesInput = $('#rules').val();
-        var dateRegex = /^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](20)[18]{2}$/;
+        var dateRegex = /^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](20)[1][8]$/;
         var dateResult = dateRegex.test(dateInput);
         var startTimeRegX = /^(0?[1-9]|1[012]):[0-5][0-9]([AaPp][Mm])$/i;
         var startTimeResult = startTimeRegX.test(startTimeInput);
