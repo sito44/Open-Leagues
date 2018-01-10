@@ -295,10 +295,11 @@ $(function() {
 
         // --------------------------------------------date validation
 
-        if (markerChecker === undefined) {
+        if (markerChecker === false) {
             $('#markerError').text('Select a Location');
         } else {
             $('#markerError').empty();
+
         }
 
         if (dateResult === false) {
@@ -344,7 +345,7 @@ $(function() {
         }
 
 
-        if (loginCheck === true && dateResult === true && startTimeResult === true && durationResult === true && maxNumResult === true && rulesInput.length > 100) {
+        if (markerChecker === true && loginCheck === true && dateResult === true && startTimeResult === true && durationResult === true && maxNumResult === true && rulesInput.length > 100) {
             console.log('working!');
             firebaseDataInput(dateInput, sportInput, startTimeInput, durationInput, maxPeopleInput, rulesInput);
 
@@ -357,7 +358,8 @@ $(function() {
     function initMap() {
 
         var marker;
-        markerChecker = marker;
+        markerChecker = false;
+        console.log(markerChecker);
         map = new google.maps.Map(document.getElementById('map'), {
             center: { lat: 32.852, lng: -117.185 },
             zoom: 9
@@ -366,7 +368,9 @@ $(function() {
         function placeMarker(location) {
             if (marker) {
                 marker.setPosition(location);
+                markerChecker = true;
             } else {
+                markerChecker = true;
                 marker = new google.maps.Marker({
                     position: location,
                     animation: google.maps.Animation.DROP,
