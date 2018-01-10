@@ -397,7 +397,6 @@ $(function() {
                 let startTime = eventData[m].startTime;
                 let duration = eventData[m].duration;
                 let maxPeople = eventData[m].maxPeople;
-                let benchSeats = eventData[m].benchSeats;
                 let rules = eventData[m].rules;
                 let iconBtn;
                 let contentString =
@@ -406,9 +405,8 @@ $(function() {
                     '<h2>Open ' + selectedSport + ' League</h2>' +
                     '<h3>Address: ' + address + '</h3>' +
                     '<p>Start Time: ' + startTime + '</p>' +
-                    '<p>Duration: ' + duration + '</p>' +
+                    '<p>Duration: ' + duration + ' hours</p>' +
                     '<p>Max Number of People: ' + maxPeople + '</p>' +
-                    '<p>Bench Seats: ' + benchSeats + '</p>' +
                     '<p>Rules: ' + rules + '</p>';
 
 
