@@ -414,7 +414,7 @@ $(function() {
 
                 switch (selectedSport) {
                     case "Soccer":
-                        iconBtn = "./assets/images/soccerIcon.png'";
+                        iconBtn = "./assets/images/soccerIcon.png";
                         break;
                     case "Football":
                         iconBtn = "./assets/images/footBallIcon.png";
