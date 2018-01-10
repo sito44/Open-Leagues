@@ -23,6 +23,7 @@ $(function() {
     var ltLgArray;
     var hasBeenClicked = false;
     var markerChecker;
+    var loginCheck = false;
 
     landingPage();
 
@@ -30,6 +31,7 @@ $(function() {
 
 
     //------------------------------------------------------FaceBook API Initialization
+
     window.fbAsyncInit = function() {
         FB.init({
             appId: '316009212235911',
@@ -66,8 +68,10 @@ $(function() {
             if (response.status === 'connected') {
                 $('.w3-modal').hide();
                 console.log('we are connected');
+                loginCheck = true;
             } else {
                 createModal();
+                loginCheck = false;
             }
 
         });
@@ -339,7 +343,8 @@ $(function() {
             $('#rulesError').empty();
         }
 
-        if (dateResult === true && startTimeResult === true && durationResult === true && maxNumResult === true && rulesInput.length > 100) {
+
+        if (loginCheck === true && dateResult === true && startTimeResult === true && durationResult === true && maxNumResult === true && rulesInput.length > 100) {
             console.log('working!');
             firebaseDataInput(dateInput, sportInput, startTimeInput, durationInput, maxPeopleInput, rulesInput);
 
@@ -507,6 +512,7 @@ $(function() {
     $('body').on('click', '#eventSubmit', function() {
         event.preventDefault();
         validateForm();
+        login();
     });
 
 
