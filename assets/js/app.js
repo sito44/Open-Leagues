@@ -132,7 +132,7 @@ $(function() {
         var openText = $('<div class="openText">');
         var openTextText = $('<p>OPEN LEAGUES</p>');
         var openDialogue = $('<div class="openDialogue">');
-        var textDialogue = $('<p class="textDialogue">Welcome to Open Leagues! Click on the Search Button to find local sports leagues and events. Click on the Create Event button to create your own events and dream team.</p>');
+        var textDialogue = $('<p class="textDialogue">Welcome to Open Leagues, a FREE community of sports enthusiasts (and players)! Join or Create events by clicking the buttons below.</p>');
         var main = $('<main id="main" class="mainStyle overlay">');
         var buttonDiv = $('<div class="divForButtons">');
         var searchBtn = $('<button id="searchBtn" class="btnStyle btn btn-lg active">');
