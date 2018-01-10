@@ -203,6 +203,14 @@ textarea {
 
 @media screen and (min-width: 1025px) {
 
+    .header {
+        height: 150px;
+    }
+
+    .openLogo {
+        height: 150px;
+    }
+
     .mainDialogue {
         border-radius: 10px;
     }
