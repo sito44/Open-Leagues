@@ -425,7 +425,8 @@ $(function() {
                     '<p>Start Time: ' + startTime + '</p>' +
                     '<p>Duration: ' + duration + ' hours</p>' +
                     '<p>Max Number of People: ' + maxPeople + '</p>' +
-                    '<p>Rules: ' + rules + '</p>';
+                    '<p>Rules: ' + rules + '</p>' + 
+                    '</div>';
 
 
                 switch (selectedSport) {
