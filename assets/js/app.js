@@ -167,8 +167,9 @@ $(function() {
         elementArray = [];
 
         var main = $('<main class="createPageStyle">');
+        var searchHeader = $('<h2 class="searchHeader">Search Events</h2>');
         var mapContainer = $('<div id="searchMap" class="searchMap infoContainers">');
-        elementArray.push(mapContainer);
+        elementArray.push(searchHeader, mapContainer);
 
         appender(elementArray, main);
         appContainer.append(main);
@@ -211,27 +212,29 @@ $(function() {
             '<option value="Pool">Pool</option>';
 
 
-        var labelSportChoice = $('<label for="sportsChoice">');
-        var labelDate = $('<label for="date">');
+        var labelSportChoice = $('<label for="sportsChoice" class="form-headings">');
+        var heading =$('<h3 class="formHeading">');
+        var labelDate = $('<label for="date" class="form-headings">');
         var date = $('<input type="text" name="date" id="date" placeholder="mm/dd/2018">');
         var dateError = $('<div id="dateError" class="errorTxt">');
-        var labelStartTime = $('<label for="startTime">');
+        var labelStartTime = $('<label for="startTime" class="form-headings">');
         var gameStartTime = $('<input type="text" name="startTime" id="startTime" placeholder="hh:mmam/pm">');
         var startTimeError = $('<div id="startTimeError" class="errorTxt">');
-        var labelDurationTime = $('<label for="DurationTime">');
+        var labelDurationTime = $('<label for="DurationTime" class="form-headings">');
         var gameDurationTime = $('<input type="text" name="DurationTime" id="durationTime" placeholder="Hours (1-4)">');
         var durationError = $('<div id="durationError" class="errorTxt">');
-        var labelMaxPeople = $('<label for="maxPeople">');
+        var labelMaxPeople = $('<label for="maxPeople" class="form-headings">');
         var maxPeople = $('<input type="text" name="maxPeople" id="maxPeople" placeholder="4-50">');
         var maxPeopleError = $('<div id="maxPeopleError" class="errorTxt">');
-        var labelRules = $('<label for="rules">');
+        var labelRules = $('<label for="rules" class="form-headings">');
         var rules = $('<textarea name="rules" id="rules" placeholder="100 word minimum">');
         var rulesError = $('<div id="rulesError" class="errorTxt">');
         var eventSubmit = $('<button id="eventSubmit" class="eSubmit">');
         var markerError = $('<div id="markerError" class="errorTxt">');
         sportsSelector.html(sportsOptions);
 
-        weatherHeader.text('Selected Area Five Day Weather Forcast');
+        weatherHeader.text('Five Day Weather Forecast');
+        heading.text('Create An Event');
         labelDate.text('Date of Event');
         labelSportChoice.text('Selected Sport: ');
         labelStartTime.text('Start Time: ');
@@ -243,6 +246,7 @@ $(function() {
         childElements.push(
 
             address,
+            heading,
             labelDate,
             date,
             dateError,
@@ -298,7 +302,7 @@ $(function() {
         // --------------------------------------------date validation
 
         if (markerChecker === false) {
-            $('#markerError').text('Select a Location');
+            $('#markerError').text('Select a Location from the Map Above');
         } else {
             $('#markerError').empty();
 
