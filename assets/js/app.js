@@ -67,7 +67,6 @@ $(function() {
             console.log(response.status);
             if (response.status === 'connected') {
                 $('.w3-modal').hide();
-                console.log('we are connected');
                 loginCheck = true;
             } else {
                 createModal();
@@ -298,7 +297,7 @@ $(function() {
         var maxNumResult = maxNumRegex.test(maxPeopleInput);
 
 
-        // --------------------------------------------date validation
+       //---------------------------------------------map location validation
 
         if (markerChecker === false) {
             $('#markerError').text('Select a Location from the Map Above');
@@ -306,6 +305,8 @@ $(function() {
             $('#markerError').empty();
 
         }
+
+        // --------------------------------------------date validation
 
         if (dateResult === false) {
             $('#dateError').text('Use a valid format mm/dd/2018');
@@ -352,7 +353,6 @@ $(function() {
 
             
         if (markerChecker === true && loginCheck === true && dateResult === true && startTimeResult === true && durationResult === true && maxNumResult === true && rulesInput.length > 100) {
-            console.log('working!');
             firebaseDataInput(dateInput, sportInput, startTimeInput, durationInput, maxPeopleInput, rulesInput);
             landingPage();
 
