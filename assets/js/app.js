@@ -415,6 +415,7 @@ $(function() {
                 let lg = parseFloat(eventData[m].lng);
                 let address = eventData[m].address;
                 let selectedSport = eventData[m].selectedSport;
+                let date = eventData[m].date;
                 let startTime = eventData[m].startTime;
                 let duration = eventData[m].duration;
                 let maxPeople = eventData[m].maxPeople;
@@ -424,7 +425,8 @@ $(function() {
 
                     '<div id="eventInfo">' +
                     '<h2>Open ' + selectedSport + ' League</h2>' +
-                    '<h3>Address: ' + address + '</h3>' +
+                    '<h3>Address: ' + address + '</h3>' + 
+                    '<p>Date: ' + date + '</p>' + 
                     '<p>Start Time: ' + startTime + '</p>' +
                     '<p>Duration: ' + duration + ' hours</p>' +
                     '<p>Max Number of People: ' + maxPeople + '</p>' +
