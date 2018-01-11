@@ -10,6 +10,7 @@ font-family: 'Poller One', cursive;
 body {
     font-family: 'Poppins', sans-serif;
     background-image: url('../images/Sports.png');
+    background-attachment: fixed;
 }
 
 label {
@@ -397,5 +398,8 @@ h3 {
         color: black;
         font-size: 23px;
         background-color: rgba(255, 255, 255, 0.5);
+    }
+    .footer:before {
+        margin-top: 10%;
     }
 }
