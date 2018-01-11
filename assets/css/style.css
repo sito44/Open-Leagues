@@ -15,10 +15,13 @@ body {
 input {
     display: block;
     border-radius: 5px;
+    width: 90%;
+    margin: 2%;
 }
 
 textarea {
     display: block;
+    width: 92%;
 }
 
 h1,
@@ -158,17 +161,19 @@ h3 {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+
 }
 
 .wB {
     flex: 2;
     border-top: 1px dashed black;
-    margin-top: 3%;
-    padding-top: 3%;
+    margin: 3% 2% 0 0;
+    padding-top: 2%;
 }
 
 .eventForm {
-    margin-bottom: 10%;
+    margin-bottom: 12%;
+    flex-grow: 2;
 }
 
 #app {
@@ -236,6 +241,9 @@ h3 {
     margin-top: 3%;
 }
 
+.clearFloat {
+    clear: both;
+}
 
 @media screen and (min-width: 375px) {
     .textDialogue {
@@ -284,34 +292,6 @@ h3 {
 }
 
 @media screen and (min-width: 1024px) {
-
-    .openText {
-        font-size: 90px;
-    }
-
-    .textDialogue {
-        font-size: 43px;
-        width: 90%;
-    }
-
-    .btn {
-        font-size: 40px;
-    }
-
-    .openLogo {
-        max-height: 200px;
-    }
-
-    .header {
-        height: 200px;
-    }
-
-    .logoDiv {
-        height: 300%;
-    }
-}
-
-@media screen and (min-width: 1025px) {
     .infoContainers {
         margin-top: 2%;
         padding: 2%;
@@ -333,14 +313,15 @@ h3 {
         flex-direction: row;
     }
     .createPageMap {
-        height: 100%;
-        flex-basis: 71%;
-        order: 1;
+        width: 100%;
+        height: 70%;
+
+        float: left;
     }
 
     .weatherBox {
         height: 45%;
-        order: 3;
+        float: left;
     }
     .weatherInfo {
         display: flex;
@@ -348,9 +329,8 @@ h3 {
         flex-wrap: wrap;
     }
     .eventForm {
-        order: 2;
-        flex-grow: 2;
-        margin-bottom: 0;
+        float: left;
+        width: 22.7%;
         padding: 0 0 1% 2%;
     }
     label {
@@ -399,4 +379,4 @@ h3 {
         font-size: 23px;
         background-color: rgba(255, 255, 255, 0.5);
     }
-
+}
