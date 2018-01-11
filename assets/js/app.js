@@ -354,7 +354,7 @@ $(function() {
         if (markerChecker === true && loginCheck === true && dateResult === true && startTimeResult === true && durationResult === true && maxNumResult === true && rulesInput.length > 100) {
             console.log('working!');
             firebaseDataInput(dateInput, sportInput, startTimeInput, durationInput, maxPeopleInput, rulesInput);
-            searchPage();
+            landingPage();
 
         }
 
