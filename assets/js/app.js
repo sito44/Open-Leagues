@@ -155,7 +155,6 @@ $(function() {
         main.append(buttonDiv);
         elementArray.push(carousel);
         elementArray.push(main);
-        console.log(elementArray);
         appender(elementArray, appContainer);
 
     }
@@ -351,6 +350,7 @@ $(function() {
         }
 
 
+            console.log(dateInput);
         if (markerChecker === true && loginCheck === true && dateResult === true && startTimeResult === true && durationResult === true && maxNumResult === true && rulesInput.length > 100) {
             console.log('working!');
             firebaseDataInput(dateInput, sportInput, startTimeInput, durationInput, maxPeopleInput, rulesInput);
@@ -365,7 +365,6 @@ $(function() {
 
         var marker;
         markerChecker = false;
-        console.log(markerChecker);
         map = new google.maps.Map(document.getElementById('map'), {
             center: { lat: 32.852, lng: -117.185 },
             zoom: 9
@@ -392,7 +391,7 @@ $(function() {
             ltLgString = marker.getPosition().toString();
             ltLgConverter(ltLgString);
             getWeather(parseFloat(ltLgArray[0]), parseFloat(ltLgArray[1]));
-            console.log(ltLgString);
+            
 
 
         });
@@ -509,7 +508,7 @@ $(function() {
 
     $('body').on('click', '#createBtn', function() {
         createPage();
-        login();
+        /*login();*/
     });
     $('body').on('click', '#searchBtn', function() {
         searchPage();
@@ -522,7 +521,7 @@ $(function() {
     $('body').on('click', '#eventSubmit', function() {
         event.preventDefault();
         validateForm();
-        login();
+        /*login();*/
     });
 
 
@@ -569,6 +568,7 @@ $(function() {
     OLdatabase.ref('userEvents/').on("child_added", function(snapshot) {
         var userEntry = snapshot.val();
         searchMapArray.push(userEntry);
+        console.log(searchMapArray);
 
     });
 
@@ -600,7 +600,7 @@ $(function() {
                 url: queryURL,
                 method: "GET"
             }).done(function(response) {
-                console.log(response);
+                
                 var results = response;
 
                 let days = [];
