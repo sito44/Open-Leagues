@@ -196,7 +196,7 @@ $(function() {
         weatherDiv.append(weatherHeader);
         weatherDiv.append(weatherInfoContainer);
         var form = $('<form class="eventForm infoContainers">');
-        var footerGap = $('<span>');
+        var footerGap = $('<span class="clearFloat">');
         var address = $('<h4>');
         var sportsSelector = $('<select name="sports" id="selectedSport" class="sportChoice">');
         var sportsOptions =
@@ -225,7 +225,7 @@ $(function() {
         var maxPeople = $('<input type="text" name="maxPeople" id="maxPeople" placeholder="4-50">');
         var maxPeopleError = $('<div id="maxPeopleError" class="errorTxt">');
         var labelRules = $('<label for="rules">');
-        var rules = $('<textarea name="rules" id="rules" placeholder="100 word minimum" rows="10" cols="29">');
+        var rules = $('<textarea name="rules" id="rules" placeholder="100 word minimum">');
         var rulesError = $('<div id="rulesError" class="errorTxt">');
         var eventSubmit = $('<button id="eventSubmit" class="eSubmit">');
         var markerError = $('<div id="markerError" class="errorTxt">');
