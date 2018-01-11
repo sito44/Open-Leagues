@@ -211,7 +211,7 @@ $(function() {
 
 
         var labelSportChoice = $('<label for="sportsChoice" class="form-headings">');
-        var heading =$('<h3 class="formHeading">');
+        var heading = $('<h3 class="formHeading">');
         var labelDate = $('<label for="date" class="form-headings">');
         var date = $('<input type="text" name="date" id="date" placeholder="mm/dd/2018">');
         var dateError = $('<div id="dateError" class="errorTxt">');
@@ -297,7 +297,7 @@ $(function() {
         var maxNumResult = maxNumRegex.test(maxPeopleInput);
 
 
-       //---------------------------------------------map location validation
+        //---------------------------------------------map location validation
 
         if (markerChecker === false) {
             $('#markerError').text('Select a Location from the Map Above');
@@ -351,7 +351,7 @@ $(function() {
         }
 
 
-            
+
         if (markerChecker === true && loginCheck === true && dateResult === true && startTimeResult === true && durationResult === true && maxNumResult === true && rulesInput.length > 100) {
             firebaseDataInput(dateInput, sportInput, startTimeInput, durationInput, maxPeopleInput, rulesInput);
             landingPage();
@@ -392,7 +392,7 @@ $(function() {
             ltLgString = marker.getPosition().toString();
             ltLgConverter(ltLgString);
             getWeather(parseFloat(ltLgArray[0]), parseFloat(ltLgArray[1]));
-            
+
 
 
         });
@@ -426,12 +426,12 @@ $(function() {
 
                     '<div id="eventInfo">' +
                     '<h2>Open ' + selectedSport + ' League</h2>' +
-                    '<h3>Address: ' + address + '</h3>' + 
-                    '<p>Date: ' + date + '</p>' + 
+                    '<h3>Address: ' + address + '</h3>' +
+                    '<p>Date: ' + date + '</p>' +
                     '<p>Start Time: ' + startTime + '</p>' +
                     '<p>Duration: ' + duration + ' hours</p>' +
                     '<p>Max Number of People: ' + maxPeople + '</p>' +
-                    '<p>Rules: ' + rules + '</p>' + 
+                    '<p>Rules: ' + rules + '</p>' +
                     '</div>';
 
 
@@ -539,7 +539,7 @@ $(function() {
 
 
         geocoder.geocode({ 'location': latLng }, function(results, status) {
-    
+
             if (status === 'OK') {
                 if (results[0]) {
                     var x = results[0].formatted_address;
@@ -556,7 +556,7 @@ $(function() {
 
                     };
                     OLdatabase.ref('userEvents/').push(currentUser);
-                    
+
                 } else {
                     window.alert('No results found');
                 }
@@ -603,7 +603,7 @@ $(function() {
                 url: queryURL,
                 method: "GET"
             }).done(function(response) {
-                
+
                 var results = response;
 
                 let days = [];

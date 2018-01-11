@@ -12,11 +12,15 @@ body {
     background-image: url('../images/Sports.png');
 }
 
+label {
+    margin-top: 1.5%;
+}
+
 input {
     display: block;
     border-radius: 5px;
     width: 90%;
-    margin: 2%;
+    margin: .5% 0 0 0;
 }
 
 textarea {
@@ -68,8 +72,6 @@ h3 {
     width: 100%;
     text-align: center;
     margin-bottom: 1%;
-    /*display: flex;
-    flex-direction: column;*/
 }
 
 .openText {
@@ -161,7 +163,6 @@ h3 {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-
 }
 
 .wB {
@@ -203,10 +204,11 @@ h3 {
 
 .eSubmit:hover {
     background-color: darkgray;
+    color: white;
 }
 
 .eSubmit:active {
-    background-color: #eff1f3;
+    background-color: lightgray;
 }
 
 .w3-modal {
@@ -254,6 +256,7 @@ h3 {
 
 .form-headings {
     font-weight: bold;
+    margin-top: 3%;
 }
 
 @media screen and (min-width: 375px) {
@@ -333,7 +336,6 @@ h3 {
     .weatherBox {
         height: 45%;
         float: left;
-
     }
 
     .weatherInfo {
@@ -347,11 +349,12 @@ h3 {
         width: 22.7%;
         padding: 0 0 1% 2%;
     }
-
-    label {
-        margin-top: 1.5%;
+    .formHeading {
+        margin-top: 3%;
     }
-
+    .form-headings {
+        margin-top: 1%;
+    }
     .header {
         height: 10%;
         margin-bottom: 2%;
