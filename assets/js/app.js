@@ -350,10 +350,11 @@ $(function() {
         }
 
 
-            console.log(dateInput);
+            
         if (markerChecker === true && loginCheck === true && dateResult === true && startTimeResult === true && durationResult === true && maxNumResult === true && rulesInput.length > 100) {
             console.log('working!');
             firebaseDataInput(dateInput, sportInput, startTimeInput, durationInput, maxPeopleInput, rulesInput);
+            searchPage();
 
         }
 
@@ -511,7 +512,7 @@ $(function() {
 
     $('body').on('click', '#createBtn', function() {
         createPage();
-        /*login();*/
+        login();
     });
     $('body').on('click', '#searchBtn', function() {
         searchPage();
@@ -524,7 +525,7 @@ $(function() {
     $('body').on('click', '#eventSubmit', function() {
         event.preventDefault();
         validateForm();
-        /*login();*/
+        login();
     });
 
 
@@ -538,7 +539,7 @@ $(function() {
 
 
         geocoder.geocode({ 'location': latLng }, function(results, status) {
-            console.log(results);
+    
             if (status === 'OK') {
                 if (results[0]) {
                     var x = results[0].formatted_address;
@@ -555,7 +556,7 @@ $(function() {
 
                     };
                     OLdatabase.ref('userEvents/').push(currentUser);
-                    console.log(x);
+                    
                 } else {
                     window.alert('No results found');
                 }
@@ -571,7 +572,6 @@ $(function() {
     OLdatabase.ref('userEvents/').on("child_added", function(snapshot) {
         var userEntry = snapshot.val();
         searchMapArray.push(userEntry);
-        console.log(searchMapArray);
 
     });
 
