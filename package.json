@@ -1,0 +1,22 @@
+{
+  "name": "open-leagues",
+  "version": "1.0.0",
+  "description": "Local sports scrimmage app based on user created events.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sito44/Open-Leagues.git"
+  },
+  "author": "Andre Holguin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sito44/Open-Leagues/issues"
+  },
+  "homepage": "https://github.com/sito44/Open-Leagues#readme",
+  "dependencies": {
+    "dotenv": "^5.0.1"
+  }
+}
