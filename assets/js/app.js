@@ -1,9 +1,22 @@
 'use strict';
 $(function() {
 
+    const dotenv = require('dotenv').config();
+    const keys = require('../../keys');
+    const axios = require('axios');
+
+    axios.get(`'https://maps.googleapis.com/maps/api/js?key=${keys.googleMapsKey}&callback=initMap'`)
+    .then(function(response){
+        console.log(response);
+    })
+    .catch(function(error){
+        console.log(error);
+    });
+
+
     //--------------------------------------fireBase Initialization
     var config = {
-        apiKey: "AIzaSyD4zfoBJAqzq1qJNqAbW87-OlVXbOId8Hg",
+        apiKey: keys.firebaseKey,
         authDomain: "open-leagues.firebaseapp.com",
         databaseURL: "https://open-leagues.firebaseio.com",
         projectId: "open-leagues",
@@ -34,7 +47,7 @@ $(function() {
 
     window.fbAsyncInit = function() {
         FB.init({
-            appId: '316009212235911',
+            appId: keys.facebookKey,
             cookie: true,
             xfbml: true,
             version: 'v2.11'
@@ -595,8 +608,7 @@ $(function() {
 
         if (latitude !== '' && longitude !== '') {
 
-            var queryURL = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude +
-                '&units=imperial&APPID=eae68fa56af3e63c236a36180ed2fe9c';
+            var queryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=imperial&APPID=${keys.openWeatherMapsKey}`;
 
 
             $.ajax({
