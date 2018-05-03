@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sito44/Open-Leagues#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "dotenv": "^5.0.1"
   }
 }
