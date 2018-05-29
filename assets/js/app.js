@@ -1,22 +1,9 @@
 'use strict';
-$(function() {
-
-    const dotenv = require('dotenv').config();
-    const keys = require('../../keys');
-    const axios = require('axios');
-
-    axios.get(`'https://maps.googleapis.com/maps/api/js?key=${keys.googleMapsKey}&callback=initMap'`)
-    .then(function(response){
-        console.log(response);
-    })
-    .catch(function(error){
-        console.log(error);
-    });
-
+$(function () {
 
     //--------------------------------------fireBase Initialization
     var config = {
-        apiKey: keys.firebaseKey,
+        apiKey: "AIzaSyD4zfoBJAqzq1qJNqAbW87-OlVXbOId8Hg",
         authDomain: "open-leagues.firebaseapp.com",
         databaseURL: "https://open-leagues.firebaseio.com",
         projectId: "open-leagues",
@@ -45,15 +32,15 @@ $(function() {
 
     //------------------------------------------------------FaceBook API Initialization
 
-    window.fbAsyncInit = function() {
+    window.fbAsyncInit = function () {
         FB.init({
-            appId: keys.facebookKey,
+            appId: '316009212235911',
             cookie: true,
             xfbml: true,
             version: 'v2.11'
         });
 
-        FB.getLoginStatus(function(response) {
+        FB.getLoginStatus(function (response) {
             if (response.status === 'connected') {
                 console.log('we are connected');
             } else if (response.status === 'not_authorized') {
@@ -66,9 +53,11 @@ $(function() {
 
     };
 
-    (function(d, s, id) {
+    (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) { return; }
+        if (d.getElementById(id)) {
+            return;
+        }
         js = d.createElement(s);
         js.id = id;
         js.src = "https://connect.facebook.net/en_US/sdk.js";
@@ -76,7 +65,7 @@ $(function() {
     }(document, 'script', 'facebook-jssdk'));
 
     function login() {
-        FB.login(function(response) {
+        FB.login(function (response) {
             console.log(response.status);
             if (response.status === 'connected') {
                 $('.w3-modal').hide();
@@ -380,7 +369,10 @@ $(function() {
         var marker;
         markerChecker = false;
         map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: 32.852, lng: -117.185 },
+            center: {
+                lat: 32.852,
+                lng: -117.185
+            },
             zoom: 9
         });
 
@@ -399,7 +391,7 @@ $(function() {
 
         }
 
-        google.maps.event.addListener(map, 'click', function(event) {
+        google.maps.event.addListener(map, 'click', function (event) {
             var ltLg = event.latLng;
             placeMarker(ltLg);
             ltLgString = marker.getPosition().toString();
@@ -417,7 +409,10 @@ $(function() {
     function initMap2() {
 
         map2 = new google.maps.Map(document.getElementById('searchMap'), {
-            center: { lat: 32.852, lng: -117.185 },
+            center: {
+                lat: 32.852,
+                lng: -117.185
+            },
             zoom: 9
         });
 
@@ -493,19 +488,22 @@ $(function() {
                     map: map2,
                     animation: google.maps.Animation.DROP,
                     icon: image,
-                    position: { lat: lt, lng: lg }
+                    position: {
+                        lat: lt,
+                        lng: lg
+                    }
                 });
 
                 marker.info = infowindow;
 
-                let toggleBounce = function() {
+                let toggleBounce = function () {
                     if (marker.getAnimation() !== null) {
                         marker.setAnimation(null);
                     } else {
                         marker.setAnimation(google.maps.Animation.BOUNCE);
                     }
                 };
-                google.maps.event.addListener(marker, 'click', function() {
+                google.maps.event.addListener(marker, 'click', function () {
                     marker.info.open(map2, marker);
                     toggleBounce();
 
@@ -519,23 +517,23 @@ $(function() {
 
     // ----------------------------------adds click handlers on buttons - event delegation
 
-    $('body').on('click', '#headerLogo', function() {
+    $('body').on('click', '#headerLogo', function () {
         landingPage();
     });
 
-    $('body').on('click', '#createBtn', function() {
+    $('body').on('click', '#createBtn', function () {
         createPage();
         login();
     });
-    $('body').on('click', '#searchBtn', function() {
+    $('body').on('click', '#searchBtn', function () {
         searchPage();
     });
 
-    $('body').on('click', '.modalButton', function() {
+    $('body').on('click', '.modalButton', function () {
         login();
     });
 
-    $('body').on('click', '#eventSubmit', function() {
+    $('body').on('click', '#eventSubmit', function () {
         event.preventDefault();
         validateForm();
         login();
@@ -548,10 +546,15 @@ $(function() {
     function firebaseDataInput(date, selectedSport, startTime, durationTime, maxPeople, rules) {
         ltLgConverter(ltLgString);
         var geocoder = new google.maps.Geocoder;
-        var latLng = { lat: parseFloat(ltLgArray[0]), lng: parseFloat(ltLgArray[1]) };
+        var latLng = {
+            lat: parseFloat(ltLgArray[0]),
+            lng: parseFloat(ltLgArray[1])
+        };
 
 
-        geocoder.geocode({ 'location': latLng }, function(results, status) {
+        geocoder.geocode({
+            'location': latLng
+        }, function (results, status) {
 
             if (status === 'OK') {
                 if (results[0]) {
@@ -582,7 +585,7 @@ $(function() {
 
     }
 
-    OLdatabase.ref('userEvents/').on("child_added", function(snapshot) {
+    OLdatabase.ref('userEvents/').on("child_added", function (snapshot) {
         var userEntry = snapshot.val();
         searchMapArray.push(userEntry);
 
@@ -594,11 +597,11 @@ $(function() {
 
     function timeShift(stringArray) {
 
-        var splitter = stringArray.map(function(string1) {
+        var splitter = stringArray.map(function (string1) {
             return string1.split(' ');
         });
 
-        var dateArray = splitter.map(function(string2) {
+        var dateArray = splitter.map(function (string2) {
             return string2.shift();
         });
         return dateArray;
@@ -608,13 +611,14 @@ $(function() {
 
         if (latitude !== '' && longitude !== '') {
 
-            var queryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=imperial&APPID=${keys.openWeatherMapsKey}`;
+            var queryURL = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon=' + longitude +
+                '&units=imperial&APPID=eae68fa56af3e63c236a36180ed2fe9c';
 
 
             $.ajax({
                 url: queryURL,
                 method: "GET"
-            }).done(function(response) {
+            }).done(function (response) {
 
                 var results = response;
 
